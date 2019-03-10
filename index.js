@@ -12,10 +12,10 @@ mongoose.connect(Database.uri, {useNewUrlParser: true}, (error) => {
         console.log(`Connected to ${Database.db} database !`);
 });
 
-app.use(express.static(__dirname + '/client/dist/client'));
+app.use(express.static(__dirname + '/client/dist'));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/dist/client/index.html'));
+    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
 });
 
 app.listen(port, () => {
