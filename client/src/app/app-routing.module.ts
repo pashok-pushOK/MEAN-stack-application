@@ -2,6 +2,10 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component'
+import {BlogComponent} from "./components/blog/blog.component";
+import {AboutComponent} from "./components/about/about.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {ErrorComponent} from "./components/error/error.component";
 
 const routes: Routes = [];
 
@@ -13,13 +17,16 @@ const appRoutes: Routes = [
         path: 'dashboard', component: DashboardComponent
     },
     {
-        path: 'blog', redirectTo: '/home'
+        path: 'blog', component: BlogComponent
     },
     {
-        path: 'admin', redirectTo: '/home'
+        path: 'profile', component: ProfileComponent
     },
     {
-        path: '**', redirectTo: '/home'
+        path: 'about', component: AboutComponent
+    },
+    {
+        path: '**', component: ErrorComponent
     }
 ];
 

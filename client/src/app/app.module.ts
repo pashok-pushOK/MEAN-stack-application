@@ -6,13 +6,21 @@ import {AppComponent} from './app.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { ErrorComponent } from './components/error/error.component';
+import { AboutComponent } from './components/about/about.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
         HomeComponent,
-        DashboardComponent
+        DashboardComponent,
+        BlogComponent,
+        ErrorComponent,
+        AboutComponent,
+        ProfileComponent
     ],
     imports: [
         BrowserModule,
