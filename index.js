@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
+const router = express.Router();
 const port = 80;
 const path = require('path');
 const mongoose = require('mongoose');
 const Database = require('./config/database');
+const authentication = require('./routes/authentication')(router);
 
 // mongoose connection
 mongoose.connect(Database.uri, {useNewUrlParser: true}, (error) => {
@@ -13,6 +15,7 @@ mongoose.connect(Database.uri, {useNewUrlParser: true}, (error) => {
 });
 
 app.use(express.static(__dirname + '/client/dist'));
+app.use('/authentication', authentication);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/dist/index.html'));
