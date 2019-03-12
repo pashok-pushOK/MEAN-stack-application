@@ -10,6 +10,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { ProfileComponent } from './components/profile/profile.component';
         BlogComponent,
         ErrorComponent,
         AboutComponent,
-        ProfileComponent
+        ProfileComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,

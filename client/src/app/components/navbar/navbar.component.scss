@@ -1,3 +1,7 @@
+.header-left-side--logo {
+    flex-shrink: 0;
+}
+
 .header-left-side--menu {
     & li {
         margin-right: 25px;
@@ -24,10 +28,12 @@
         margin-left: 15px;
 
         &.item-search {
+
             & input {
                 height: 40px;
                 border-top-left-radius: 3px;
                 border-bottom-left-radius: 3px;
+                width: 100%;
             }
 
             & button {
