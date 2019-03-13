@@ -4,17 +4,24 @@ const router = express.Router();
 const port = 80;
 const path = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const Database = require('./config/database');
 const authentication = require('./routes/authentication')(router);
 
 // mongoose connection
-mongoose.connect(Database.uri, {useNewUrlParser: true}, (error) => {
-    if(error) throw new error;
-    else
-        console.log(`Connected to ${Database.db} database !`);
+mongoose.connect(Database.uri, {useNewUrlParser: true, useCreateIndex: true}, (error) => {
+    if (error) throw new error;
+    else console.log(`Connected to ${Database.db} database !`);
 });
 
+// body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+// express static folder
 app.use(express.static(__dirname + '/client/dist'));
+
+// requests
 app.use('/authentication', authentication);
 
 app.get('/', (req, res) => {
