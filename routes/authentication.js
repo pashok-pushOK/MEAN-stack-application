@@ -9,11 +9,15 @@ module.exports = (router) => {
             res.json({success: false, message: 'You must provide a username!'});
         } else if(!req.body.userPassword) {
             res.json({success: false, message: 'You must provide a password!'});
+        } else if(!req.body.userCity) {
+            res.json({success: false, message: 'You must provide a city!'});
         } else {
             const user = new userSchema({
                 userName: req.body.userName,
                 userEmail: req.body.userEmail.toLowerCase(),
-                userPassword: req.body.userPassword
+                userPassword: req.body.userPassword,
+                userCity: req.body.userCity,
+                userAdress: req.body.userAdress
             });
             user.save((error) => {
                 if(error) {
@@ -30,7 +34,11 @@ module.exports = (router) => {
                                     if(error.errors.userPassword) {
                                         res.json({success: false, message: error.errors.userPassword.message});
                                     } else {
-                                        res.json({success: false, message: error})
+                                        if(error.errors.userCity) {
+                                            res.json({success: false, message: error.errors.userCity.message});
+                                        } else {
+                                            res.json({success: false, message: error})
+                                        }
                                     }
                                 }
                             }

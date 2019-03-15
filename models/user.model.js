@@ -42,8 +42,20 @@ let userPasswordLenghtChecker = (password) => {
 let userPasswordValid = (password) => {
     if(!password) return false;
     else {
-        const regExp = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,30})+$/);
+        const regExp = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})");
         return regExp.test(password);
+    }
+};
+
+let userCityLengthChecker = (city) => {
+    if(!city) return false;
+};
+
+let userCityValid = (city) => {
+    if(!city) return false;
+    else {
+        const regExp = new RegExp(/^[a-zA-Z\u0080-\u024F\s\/\-\)\(\`\.\"\']+$/);
+        return regExp.test(city);
     }
 };
 
@@ -58,8 +70,13 @@ const userNameValidators = [
 ];
 
 const userPasswordValidators = [
-    {validator: userPasswordLenghtChecker, message: 'Password length must be more than 5 characters'},
+    {validator: userPasswordLenghtChecker, message: 'Password length must be more than 8 characters'},
     {validator: userPasswordValid, message: 'Password must not have any special characters'}
+];
+
+const userCityValidators = [
+    {validator: userCityLengthChecker, message: 'Field City must not be empty!'},
+    {validator: userCityValid, message: 'Enter a valid City!'}
 ];
 
 const UserSchema = mongoose.Schema({
@@ -80,6 +97,15 @@ const UserSchema = mongoose.Schema({
         unique: true,
         lowercase: true,
         validate: emailValidators
+    },
+    userCity: {
+        type: String,
+        required: true,
+        validate: userCityValidators
+    },
+    userAdress: {
+        type: String,
+        default: ''
     }
 });
 
