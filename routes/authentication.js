@@ -18,15 +18,24 @@ module.exports = (router) => {
             user.save((error) => {
                 if(error) {
                     if(error.code === 11000) {
-                        res.json({success: false, message: 'User Name already exists!'});
+                        res.json({success: false, message: 'User name or e-mail already exists!'});
                     } else {
                         if(error.errors) {
                             if (error.errors.userEmail) {
                                 res.json({success: false, message: error.errors.userEmail.message});
+                            } else {
+                                if(error.errors.userName) {
+                                    res.json({success: false, message: error.errors.userName.message});
+                                } else {
+                                    if(error.errors.userPassword) {
+                                        res.json({success: false, message: error.errors.userPassword.message});
+                                    } else {
+                                        res.json({success: false, message: error})
+                                    }
+                                }
                             }
                         } else {
                             res.json({success: false, error: error});
-                            console.log(error);
                         }
                     }
                 }

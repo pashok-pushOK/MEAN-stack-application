@@ -31,26 +31,35 @@ let userNameValid = (name) => {
     }
 };
 
-const emailValidators = [
-    {
-        validator: userEmailChecker,
-        message: 'E-mail must be at least 5 characters and but no more than 30'
-    },
-    {
-        validator: userEmailValid,
-        message: 'E-mail is not valid!'
+let userPasswordLenghtChecker = (password) => {
+    if(!password) return false;
+    else {
+        if(password.length < 8 || password.length > 30) return false;
+        else return true;
     }
+};
+
+let userPasswordValid = (password) => {
+    if(!password) return false;
+    else {
+        const regExp = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,30})+$/);
+        return regExp.test(password);
+    }
+};
+
+const emailValidators = [
+    {validator: userEmailChecker, message: 'E-mail must be at least 5 characters and but no more than 30'},
+    {validator: userEmailValid, message: 'E-mail is not valid!'}
 ];
 
 const userNameValidators = [
-    {
-        validator: userNameChecker,
-        message: 'User Name must be at least 3 characters and but no more than 20'
-    },
-    {
-        validator: userNameValid,
-        message: 'User Name must not have any special characters!'
-    }
+    {validator: userNameChecker, message: 'User Name must be at least 3 characters and but no more than 20'},
+    {validator: userNameValid, message: 'User Name must not have any special characters!'}
+];
+
+const userPasswordValidators = [
+    {validator: userPasswordLenghtChecker, message: 'Password length must be more than 5 characters'},
+    {validator: userPasswordValid, message: 'Password must not have any special characters'}
 ];
 
 const UserSchema = mongoose.Schema({
@@ -62,7 +71,8 @@ const UserSchema = mongoose.Schema({
     },
     userPassword: {
         type: String,
-        required: true
+        required: true,
+        validate: userPasswordValidators
     },
     userEmail: {
         type: String,
