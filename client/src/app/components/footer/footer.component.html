@@ -93,7 +93,7 @@
                                    formControlName="userRepeatPassword"
                             >
                             <div class="alert alert-dismissible fade show"
-                                 *ngIf="form.controls.userRepeatPassword.errors"
+                                 *ngIf="form.controls.userRepeatPassword.errors && form.controls.userRepeatPassword.dirty"
                                  [ngClass]="{'alert-danger': form.controls.userRepeatPassword.errors}"
                                  role="alert"
                             >
