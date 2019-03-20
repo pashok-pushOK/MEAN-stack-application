@@ -1,7 +1,3 @@
-.navbar {
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.15);
-}
-
 .header-left-side--logo {
     flex-shrink: 0;
 }
@@ -36,6 +32,7 @@
         &.item-log_in,
         &.item-sign_up,
         &.item-standard {
+            cursor: pointer;
 
             & button {
                 font-weight: 500;
@@ -64,6 +61,34 @@
                     color: rgba(0, 0, 0, 0.8);
                 }
             }
+        }
+    }
+}
+
+.navbar {
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.15);
+
+    & .dropdown-toggle {
+        border: none;
+        background: none;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        cursor: pointer;
+
+        &.customized-grey {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+    }
+
+    & .dropdown {
+
+        &-item {
+            text-transform: capitalize !important;
+            font-size: 12px !important;
         }
     }
 }
