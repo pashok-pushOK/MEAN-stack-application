@@ -1,18 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,500i,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700,900');
 
 * {
-    margin: 0;
     padding: 0;
+    margin: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-html, body {
+body, html {
     height: 100%;
     min-width: 320px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
 }
 
 ul, ol, p, h1, h2, h3, h4, h5, h6 {
@@ -52,7 +52,7 @@ input, textarea {
 }
 
 
-/* icons */
+/* I C O N S */
 
 @font-face {
     font-family: 'icomoon';
@@ -1600,4 +1600,4 @@ input, textarea {
     content: "\ea7b";
 }
 
-/* end of icons */
+/* E N D   O F   I C O N S */
