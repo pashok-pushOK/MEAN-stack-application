@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {BlogCard} from "../../blog-card";
+import {BlogDataService} from "../../blog-data.service";
 
 @Component({
     selector: 'app-home',
@@ -6,6 +8,7 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+    blogCardsArr = [];
 
     componentTexts = [
         {
@@ -18,10 +21,14 @@ export class HomeComponent implements OnInit {
         }
     ];
 
-    constructor() {
+    constructor(private blogDataService: BlogDataService) {}
+
+    getBlogData() {
+        this.blogCardsArr = this.blogDataService.getBlogData();
     }
 
     ngOnInit() {
+        this.getBlogData();
     }
 
 }

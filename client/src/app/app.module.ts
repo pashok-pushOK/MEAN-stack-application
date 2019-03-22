@@ -12,6 +12,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BlogCardComponent } from './components/blog-card/blog-card.component';
+import { ArticleComponent } from './components/article/article.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import { FooterComponent } from './components/footer/footer.component';
         BlogComponent,
         ErrorComponent,
         AboutComponent,
-        FooterComponent
+        FooterComponent,
+        BlogCardComponent,
+        ArticleComponent
     ],
     imports: [
         BrowserModule,
