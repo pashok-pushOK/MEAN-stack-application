@@ -5,6 +5,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component'
 import {BlogComponent} from "./components/blog/blog.component";
 import {AboutComponent} from "./components/about/about.component";
 import {ErrorComponent} from "./components/error/error.component";
+import {ArticleComponent} from "./components/article/article.component";
 
 const appRoutes: Routes = [
     {
@@ -18,6 +19,9 @@ const appRoutes: Routes = [
     },
     {
         path: 'blog', component: BlogComponent
+    },
+    {
+        path: 'blog/post/:id', component: ArticleComponent
     },
     {
         path: 'about', component: AboutComponent

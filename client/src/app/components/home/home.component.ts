@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogCard} from "../../blog-card";
-import {BlogDataService} from "../../blog-data.service";
+import {BlogDataService} from "../../service/blog-data.service";
 
 @Component({
     selector: 'app-home',
