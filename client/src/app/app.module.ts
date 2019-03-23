@@ -20,6 +20,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
 import { ArticleComponent } from './components/article/article.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
         FooterComponent,
         BlogCardComponent,
         ArticleComponent,
-        PaginationComponent
+        PaginationComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,

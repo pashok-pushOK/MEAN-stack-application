@@ -52,5 +52,41 @@ module.exports = (router) => {
         }
     });
 
+    router.get('/checkEmail/:email', (req, res) => {
+        if(!req.params.userEmail) {
+            res.json({success: false, message: 'E-mail was not provided!'})
+        } else {
+            userSchema.findOne({userEmail: req.params.userEmail}, (err, user) => {
+                if(err) {
+                    res.json({success: false, message: err})
+                } else {
+                    if(user) {
+                        res.json({success: false, message: 'User e-mail already exists!'})
+                    } else {
+                        res.json({success: true, message: 'E-mail is available!'})
+                    }
+                }
+            })
+        }
+    });
+
+    router.get('/checkUsername/:username', (req, res) => {
+        if(!req.params.userName) {
+            res.json({success: false, message: 'User name was not provided!'})
+        } else {
+            userSchema.findOne({userName: req.params.userName}, (err, user) => {
+                if(err) {
+                    res.json({success: false, message: err})
+                } else {
+                    if(user) {
+                        res.json({success: false, message: 'User name already exists!'})
+                    } else {
+                        res.json({success: true, message: 'User name is available!'})
+                    }
+                }
+            })
+        }
+    });
+
     return router;
 };
