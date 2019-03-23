@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 const Database = require('./config/database');
 const authentication = require('./routes/authentication')(router);
 
+const cors = require('cors');
+
 // mongoose connection
 mongoose.connect(Database.uri, {useNewUrlParser: true, useCreateIndex: true}, (error) => {
     if (error) throw new error;
@@ -20,6 +22,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // express static folder
 app.use(express.static(__dirname + '/client/dist'));
+
+// cors
+const corsOptions = {
+    origin: 'http://localhost:4200',
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 // requests
 app.use('/authentication', authentication);

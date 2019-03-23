@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {group} from "@angular/animations";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
     selector: 'app-footer',
@@ -87,11 +87,21 @@ export class FooterComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        console.log(`The form has been submitted!`);
+        const user = {
+            userName: this.form.get('userName').value,
+            userEmail: this.form.get('userEmail').value,
+            userPassword: this.form.get('userPassword').value,
+            userCity: this.form.get('userCity').value,
+            userAdress: this.form.get('userAdress').value
+        };
+        this.authService.registerUser(user);
+        this.form.reset();
     }
 
-    constructor(private formBuilder: FormBuilder) {
-    }
+    constructor(
+        private formBuilder: FormBuilder,
+        private authService: AuthService
+    ) {}
 
     ngOnInit() {
         this.createForm();

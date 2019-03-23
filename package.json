@@ -30,6 +30,7 @@
     "angular2-useful-swiper": "^5.0.1",
     "bcrypt-nodejs": "0.0.3",
     "core-js": "^2.5.4",
+    "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "express": "^4.16.4",
     "hammerjs": "^2.0.8",
