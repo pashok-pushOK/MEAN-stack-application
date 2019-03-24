@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-register',
@@ -111,7 +112,7 @@ export class RegisterComponent implements OnInit {
             .subscribe(res => {
                 if (res.success) {
                     this.form.reset();
-
+                    this.router.navigate(['/login']);
                 }
             });
     }
@@ -134,7 +135,8 @@ export class RegisterComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {
     }
 
