@@ -1,0 +1,121 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h1 class="display-3 mb-5">Sign up</h1>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>Username</label>
+                <input type="text" class="form-control" name="userName" placeholder="Username"
+                       formControlName="userName" minlength="3" maxlength="20" autocomplete="off"
+                       (blur)="checkUsername()"/>
+                <div class="alert alert-dismissible fade show"
+                     *ngIf="(!!form.controls.userName.errors && form.controls.userName.dirty) || userNameMessage"
+                     [ngClass]="{'alert-danger': form.controls.userName.errors || (userNameStatus == false), 'alert-success': userNameStatus}"
+                     role="alert"
+                >
+                    <span *ngIf="form.controls.userName.errors?.required">This field is required!</span>
+                    <span
+                        *ngIf="form.controls.userName.errors?.minlength || form.controls.userName.errors?.maxlength || form.controls.userName.errors?.validateUserName">
+                                    User Name must be at least 3 characters, but less than 20, and consist of numbers and letters only!
+                                </span>
+                    <span *ngIf="userNameMessage">{{userNameMessage}}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="userEmail" placeholder="Email"
+                   formControlName="userEmail" autocomplete="off" minlength="5" maxlength="30" (blur)="checkEmail()"
+            >
+            <div class="alert alert-dismissible fade show"
+                 *ngIf="(form.controls.userEmail.errors && form.controls.userEmail.dirty) || emailMessage"
+                 [ngClass]="{'alert-danger': form.controls.userEmail.errors || (emailStatus == false), 'alert-success': emailStatus}"
+                 role="alert"
+            >
+                <span *ngIf="form.controls.userEmail.errors?.required">This field is required!</span>
+                <span
+                    *ngIf="form.controls.userEmail.errors?.minlength || form.controls.userEmail.errors?.maxlength || form.controls.userEmail.errors?.validateUserEmail">
+                                E-mail is not valid! It must be at least 5 characters, but less than 30
+                            </span>
+                <span *ngIf="emailMessage">{{emailMessage}}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Password</label>
+                <input type="password" class="form-control" name="userPassword" placeholder="Password"
+                       formControlName="userPassword" minlength="8"
+                >
+                <div class="alert alert-dismissible fade show"
+                     *ngIf="form.controls.userPassword.errors && form.controls.userPassword.dirty"
+                     [ngClass]="{'alert-danger': form.controls.userPassword.errors}"
+                     role="alert"
+                >
+                                <span *ngIf="form.controls.userPassword.errors?.required">
+                                    Password is required!
+                                </span>
+                    <span *ngIf="form.controls.userPassword.errors?.validateUserPassword">
+                                    Password length must be more than 8 characters and must consist of numbers and letters
+                                </span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" formControlName="userRepeatPassword">
+                <div class="alert alert-dismissible fade show"
+                     *ngIf="form.controls.userRepeatPassword.errors && form.controls.userRepeatPassword.dirty"
+                     [ngClass]="{'alert-danger': form.controls.userRepeatPassword.errors}"
+                     role="alert"
+                >
+                                <span
+                                    *ngIf="form.errors?.matchingPasswords && form.controls.userRepeatPassword.touched">
+                                    Password do not much!
+                                </span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-md-6">
+                <label>City</label>
+                <input type="text"
+                       class="form-control"
+                       name="userCity"
+                       formControlName="userCity"
+                >
+                <div class="alert alert-dismissible fade show"
+                     *ngIf="form.controls.userCity.errors && form.controls.userCity.dirty"
+                     [ngClass]="{'alert-danger': form.controls.userCity.errors}"
+                     role="alert"
+                >
+                                <span
+                                    *ngIf="form.controls.userCity.errors || form.controls.userCity.errors?.validateUserCity">
+                                    Enter a valid City!
+                                </span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-md-6">
+                <label>Address</label>
+                <input type="text" class="form-control" name="userAdress" placeholder="1234 Main St"
+                       formControlName="userAdress">
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="button" data-dismiss="modal" class="btn btn-outline-secondary mr-3" (click)="form.reset()">Clear</button>
+            <button type="submit" class="btn btn-info" [disabled]="!form.valid">Register</button>
+        </div>
+    </form>
+</div>

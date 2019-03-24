@@ -52,7 +52,7 @@ module.exports = (router) => {
         }
     });
 
-    router.get('/checkEmail/:email', (req, res) => {
+    router.get('/checkEmail/:userEmail', (req, res) => {
         if(!req.params.userEmail) {
             res.json({success: false, message: 'E-mail was not provided!'})
         } else {
@@ -61,7 +61,7 @@ module.exports = (router) => {
                     res.json({success: false, message: err})
                 } else {
                     if(user) {
-                        res.json({success: false, message: 'User e-mail already exists!'})
+                        res.json({success: false, message: 'E-mail already exists!'})
                     } else {
                         res.json({success: true, message: 'E-mail is available!'})
                     }
@@ -70,7 +70,7 @@ module.exports = (router) => {
         }
     });
 
-    router.get('/checkUsername/:username', (req, res) => {
+    router.get('/checkUsername/:userName', (req, res) => {
         if(!req.params.userName) {
             res.json({success: false, message: 'User name was not provided!'})
         } else {

@@ -3,18 +3,18 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../service/auth.service";
 
 @Component({
-    selector: 'app-footer',
-    templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.scss']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
     form: FormGroup;
     submitted = false;
-    message: string;
-    messageClass: string;
     emailMessage: string;
+    emailStatus: boolean;
     userNameMessage: string;
+    userNameStatus: boolean;
 
     validateUserName(control) {
         const regExp = new RegExp(/^[a-zA-Z0-9]+$/);
@@ -54,28 +54,37 @@ export class FooterComponent implements OnInit {
 
     createForm() {
         this.form = this.formBuilder.group({
-            userName: ['',
+            userName: new FormControl(
+                '',
                 Validators.compose([
                     Validators.required,
                     Validators.minLength(3),
                     Validators.maxLength(20),
                     this.validateUserName
                 ])
-            ],
-            userPassword: ['', Validators.compose([
-                Validators.required,
-                this.validateUserPassword
-            ])],
-            userRepeatPassword: ['', Validators.required],
-            userEmail: ['', Validators.compose([
-                Validators.required,
-                this.validateUserEmail
-            ])],
-            userCity: ['', Validators.compose([
-                Validators.required,
-                this.validateUserCity
-            ])],
-            userAdress: ''
+            ),
+            userPassword: new FormControl(
+                '', Validators.compose([
+                    Validators.required,
+                    this.validateUserPassword
+                ])
+            ),
+            userRepeatPassword: new FormControl('', Validators.required),
+            userEmail: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    this.validateUserEmail
+                ])
+            ),
+            userCity: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    this.validateUserCity
+                ])
+            ),
+            userAdress: new FormControl('')
         }, {validator: this.matchingPasswords('userPassword', 'userRepeatPassword')});
     }
 
@@ -101,12 +110,8 @@ export class FooterComponent implements OnInit {
         this.authService.registerUser(user)
             .subscribe(res => {
                 if (res.success) {
-                    this.message = res.message;
-                    this.messageClass = 'alert-success show'
                     this.form.reset();
-                } else {
-                    this.message = res.message;
-                    this.messageClass = 'alert-danger show';
+
                 }
             });
     }
@@ -114,16 +119,16 @@ export class FooterComponent implements OnInit {
     checkEmail() {
         this.authService.checkUserEmail(this.form.get('userEmail').value)
             .subscribe(data => {
-                if(data.success) this.emailMessage = data.message;
-                else this.emailMessage = data.message;
+                this.emailMessage = data.message;
+                this.emailStatus = data.success;
             });
     }
 
     checkUsername() {
         this.authService.checkUserName(this.form.get('userName').value)
             .subscribe(data => {
-                if(data.success) this.userNameMessage = data.message;
-                else this.userNameMessage = data.message;
+                this.userNameMessage = data.message;
+                this.userNameStatus = data.success;
             });
     }
 

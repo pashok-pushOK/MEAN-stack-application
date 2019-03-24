@@ -16,11 +16,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AboutComponent } from './components/about/about.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
 import { ArticleComponent } from './components/article/article.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
     declarations: [
@@ -31,11 +31,11 @@ import { LoginComponent } from './components/login/login.component';
         BlogComponent,
         ErrorComponent,
         AboutComponent,
-        FooterComponent,
         BlogCardComponent,
         ArticleComponent,
         PaginationComponent,
-        LoginComponent
+        LoginComponent,
+        RegisterComponent
     ],
     imports: [
         BrowserModule,

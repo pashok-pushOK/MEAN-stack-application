@@ -20,11 +20,11 @@ export class AuthService {
         return this.httpClient.post<registerResponse>(`http://localhost/authentication/register`, user)
     }
 
-    checkUserName(user): Observable<registerResponse> {
-        return this.httpClient.post<registerResponse>(`http://localhost/checkUsername/${user.userName}`, user)
+    checkUserName(username): Observable<registerResponse> {
+        return this.httpClient.get<registerResponse>(`http://localhost/authentication/checkUsername/${username}`)
     }
 
-    checkUserEmail(user): Observable<registerResponse> {
-        return this.httpClient.post<registerResponse>(`http://localhost/checkEmail/${user.userEmail}`, user);
+    checkUserEmail(useremail): Observable<registerResponse> {
+        return this.httpClient.get<registerResponse>(`http://localhost/authentication/checkEmail/${useremail}`)
     }
 }
