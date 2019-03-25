@@ -1,3 +1,29 @@
-<p>
-  login works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 offset-sm-3">
+            <div class="login-page">
+                <div class="pb-3">
+                    <h1 class="display-5 mb-3">Login Page</h1>
+                    <hr>
+                </div>
+
+                <div class="login-form">
+                    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" method="post">
+                        <div class="form-group">
+                            <label>User name</label>
+                            <input formControlName="userName" type="text" name="userName" placeholder="User name" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input formControlName="userPassword" type="password" name="userPassword" placeholder="Password" class="form-control"/>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="reset" class="btn btn-outline-secondary mr-3">Clear</button>
+                            <button type="submit" class="btn btn-info">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

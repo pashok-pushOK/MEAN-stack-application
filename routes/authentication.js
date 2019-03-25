@@ -1,4 +1,5 @@
 const userSchema = require('../models/user.model');
+const bcrypt = require('bcrypt-nodejs');
 
 module.exports = (router) => {
 
@@ -85,6 +86,35 @@ module.exports = (router) => {
                     }
                 }
             })
+        }
+    });
+
+    router.post('/login', (req, res) => {
+        if(!req.body.userName) {
+            res.json({success: false, message: 'You must provide a username!'})
+        } else {
+            if(!req.body.userPassword) {
+                res.json({success: false, message: 'You must provide a password!'})
+            } else {
+                userSchema.findOne({userName: req.body.userName}, (error, user) => {
+                    if(error) {
+                        res.json({success: false, message: error})
+                    } else {
+                        if(user) {
+                            let password = user.userPassword;
+                            bcrypt.compare(req.body.userPassword, password, (err) => {
+                                if(err) {
+                                    res.json({success: false, message: 'User name found, but password is not correct for provided username!'})
+                                } else {
+                                    res.json({success: true, message: 'Password is correct!'})
+                                }
+                            });
+                        } else {
+                            res.json({success: false, message: 'Username is not found in database!'})
+                        }
+                    }
+                });
+            }
         }
     });
 
