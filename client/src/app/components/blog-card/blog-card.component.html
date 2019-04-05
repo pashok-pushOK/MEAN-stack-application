@@ -1,0 +1,23 @@
+<div class="blog-card spring-fever"
+     [ngStyle]="{'background': 'url(../../../assets/images/' + blogCard.blogImg + ') center / cover no-repeat'}">
+    <a href="blog/post/{{blogCard.blogId}}">
+        <div class="title-content">
+            <h3>SPRING FEVER</h3>
+            <hr/>
+            <a href="blog/post/{{blogCard.blogId}}" class="intro">
+                {{blogCard.blogTitle}}
+            </a>
+        </div>
+        <div class="card-info">
+            {{blogCard.blogDesc}}
+        </div>
+        <div class="utility-info">
+            <ul class="utility-list">
+                <li class="comments">12</li>
+                <li class="date">03.12.2015</li>
+            </ul>
+        </div>
+        <div class="gradient-overlay"></div>
+        <div class="color-overlay"></div>
+    </a>
+</div>

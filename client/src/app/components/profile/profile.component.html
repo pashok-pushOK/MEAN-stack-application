@@ -1,0 +1,13 @@
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item">Username: {{userName}}</li>
+        <li class="list-group-item">Email: {{userEmail}}</li>
+        <li class="list-group-item">City: {{userCity}}</li>
+        <li class="list-group-item" *ngIf="userAdress; else defaultAdress;">Adress: {{userAdress}}</li>
+        <ng-template #defaultAdress>
+            <li class="list-group-item">Adress - default: Ukraine</li>
+        </ng-template>
+    </ul>
+
+    <button class="btn btn-danger" (click)="logOut()">Log out</button>
+</div>

@@ -1,0 +1,8 @@
+.alert {
+    margin: 10px 0;
+    font-size: 12px;
+}
+
+.alert-dismissible .close {
+    padding: .6rem 0.5rem;
+}

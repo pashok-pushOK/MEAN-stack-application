@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // express static folder
-app.use(express.static(__dirname + '/client/dist'));
+app.use(express.static(__dirname + '/client/dist/client'));
 
 // cors
 const corsOptions = {
@@ -34,7 +34,7 @@ app.use(cors(corsOptions));
 app.use('/authentication', authentication);
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
+    res.sendFile(path.join(__dirname + '/client/dist/client/index.html'));
 });
 
 app.listen(port, () => {

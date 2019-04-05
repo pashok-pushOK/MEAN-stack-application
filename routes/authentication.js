@@ -1,4 +1,4 @@
-const userSchema = require('../../MEAN-stack-application1/models/user.model');
+const userSchema = require('../models/user.model');
 const bcrypt = require('bcrypt-nodejs');
 
 module.exports = (router) => {
