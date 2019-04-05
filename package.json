@@ -1,0 +1,32 @@
+{
+  "name": "mean-stack-application",
+  "version": "1.0.0",
+  "description": "MEAN stack application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pashok-pushOK/MEAN-stack-application.git"
+  },
+  "author": "Pavel Tseluiko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pashok-pushOK/MEAN-stack-application/issues"
+  },
+  "homepage": "https://github.com/pashok-pushOK/MEAN-stack-application#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "core-js": "^2.5.4",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10",
+    "rxjs": "~6.3.3",
+    "tslib": "^1.9.0",
+    "zone.js": "~0.8.26",
+    "body-parser": "^1.18.3",
+    "mongoose": "^5.4.18"
+  }
+}
