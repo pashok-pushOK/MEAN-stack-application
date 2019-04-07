@@ -53,42 +53,6 @@ export class RegisterComponent implements OnInit {
         }
     };
 
-    createForm() {
-        this.form = this.formBuilder.group({
-            userName: new FormControl(
-                '',
-                Validators.compose([
-                    Validators.required,
-                    Validators.minLength(3),
-                    Validators.maxLength(20),
-                    this.validateUserName
-                ])
-            ),
-            userPassword: new FormControl(
-                '', Validators.compose([
-                    Validators.required,
-                    this.validateUserPassword
-                ])
-            ),
-            userRepeatPassword: new FormControl('', Validators.required),
-            userEmail: new FormControl(
-                '',
-                Validators.compose([
-                    Validators.required,
-                    this.validateUserEmail
-                ])
-            ),
-            userCity: new FormControl(
-                '',
-                Validators.compose([
-                    Validators.required,
-                    this.validateUserCity
-                ])
-            ),
-            userAdress: new FormControl('')
-        }, {validator: this.matchingPasswords('userPassword', 'userRepeatPassword')});
-    }
-
     matchingPasswords(pass, confirm) {
         return (group: FormGroup) => {
             if (group.controls[pass].value === group.controls[confirm].value) {
@@ -141,7 +105,40 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.createForm();
+        this.form = this.formBuilder.group({
+            userName: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    Validators.minLength(3),
+                    Validators.maxLength(20),
+                    this.validateUserName
+                ])
+            ),
+            userPassword: new FormControl(
+                '', Validators.compose([
+                    Validators.required,
+                    this.validateUserPassword
+                ])
+            ),
+            userRepeatPassword: new FormControl('', Validators.required),
+            userEmail: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    this.validateUserEmail
+                ])
+            ),
+            userCity: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    this.validateUserCity
+                ])
+            ),
+            userAdress: new FormControl('')
+        }, {validator: this.matchingPasswords('userPassword', 'userRepeatPassword')});
+
     }
 
 }

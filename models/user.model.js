@@ -119,7 +119,7 @@ UserSchema.pre('save', function (next) {
     });
 });
 
-UserSchema.methods.comparePassword = (password) => {
+exports.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.userPassword);
 };
 

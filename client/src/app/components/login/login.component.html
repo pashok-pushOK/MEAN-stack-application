@@ -10,57 +10,29 @@
             </div>
 
             <div class="col-6 col-sm-6">
+                <div class="d-flex align-items-center w-100 h-100">
+
+                    <form method="post" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+                        <div class="alert alert-dismissible show fade" [ngClass]="alertClass" *ngIf="alertClass">
+                            <span>Message: {{responseMessage}}</span>
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field>
+                                <input matInput placeholder="Username" type="text" formControlName="userName">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field>
+                                <input matInput placeholder="Password" type="password" formControlName="userPassword">
+                            </mat-form-field>
+                        </div>
+                        <button mat-flat-button color="primary">Login</button>
+                    </form>
+
+                </div>
             </div>
 
         </div>
     </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<div class="login-form">-->
-    <!--<div class="alert alert-dismissible show fade" [ngClass]="alertClass" *ngIf="alertClass">-->
-        <!--<span>Message: {{responseMessage}}</span>-->
-    <!--</div>-->
-    <!--<form [formGroup]="formLogin" (ngSubmit)="onSubmit()" method="post">-->
-        <!--<div class="form-group">-->
-            <!--<label>User name</label>-->
-            <!--<input formControlName="userName" type="text" name="userName" placeholder="User name"-->
-                   <!--class="form-control"/>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label>Password</label>-->
-            <!--<input formControlName="userPassword" type="password" name="userPassword"-->
-                   <!--placeholder="Password" class="form-control"/>-->
-        <!--</div>-->
-        <!--<div class="d-flex justify-content-between align-items-center">-->
-            <!--<a routerLink="/register" class="text-info font-weight-bold">Sign up</a>-->
-            <!--<div>-->
-                <!--<button type="reset" class="btn btn-outline-secondary mr-3">Clear</button>-->
-                <!--<button type="submit" class="btn btn-info">Login</button>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</form>-->
-<!--</div>-->

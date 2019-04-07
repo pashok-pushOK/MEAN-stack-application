@@ -9,6 +9,7 @@ import {ErrorComponent} from "./components/error/error.component";
 import {ArticleComponent} from "./components/article/article.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 const appRoutes: Routes = [
     {
@@ -25,6 +26,9 @@ const appRoutes: Routes = [
     },
     {
         path: 'about', component: AboutComponent
+    },
+    {
+        path: 'profile/:userName', component: ProfileComponent
     },
     {
         path: 'login', component: LoginComponent
