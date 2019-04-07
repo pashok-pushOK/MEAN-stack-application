@@ -1,13 +1,44 @@
 <div class="container">
-    <ul class="list-group">
-        <li class="list-group-item">Username: {{userName}}</li>
-        <li class="list-group-item">Email: {{userEmail}}</li>
-        <li class="list-group-item">City: {{userCity}}</li>
-        <li class="list-group-item" *ngIf="userAdress; else defaultAdress;">Adress: {{userAdress}}</li>
-        <ng-template #defaultAdress>
-            <li class="list-group-item">Adress - default: Ukraine</li>
-        </ng-template>
-    </ul>
+    <div class="profile-block">
 
-    <button class="btn btn-danger" (click)="logOut()">Log out</button>
+        <div>
+            <form [formGroup]="form" (ngSubmit)="submitForm()" method="post" enctype="multipart/form-data">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="profile-avatar">
+                        <div *ngIf="!isUploaded; else elseBlock">
+                            <img src="../../../assets/images/no-photo.png" alt="avatar">
+                        </div>
+                        <ng-template #elseBlock>
+                            <img [src]="selectedFile.src" [alt]="selectedFile.name">
+                        </ng-template>
+                    </div>
+                    <label for="avatarLabel">
+                        <!--<button mat-button onclick="document.getElementById('avatarLabel').click()">Change image</button>-->
+                        <input
+                            #imageInput
+                            (change)="processFile(imageInput)"
+                            type="file"
+                            accept="image/*"
+                            id="avatarLabel"
+                            formControlName="avatar"
+                        >
+                    </label>
+                    <input type="text" formControlName="asa" style="border: 1px solid red">
+                    <button type="submit" mat-flat-button color="warn">save</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 offset-md-1 col-md-10 offset-lg-3 col-lg-6">
+                <ul class="list-group pb-4">
+                    <li class="list-group-item">Username: {{userName}}</li>
+                    <li class="list-group-item">Email: {{userEmail}}</li>
+                    <li class="list-group-item">City: {{userCity}}</li>
+                    <li class="list-group-item" *ngIf="userAdress">Adress: {{userAdress}}</li>
+                </ul>
+                <button mat-flat-button color="accent" type="button" (click)="logOut()">Log out</button>
+            </div>
+        </div>
+    </div>
 </div>

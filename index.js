@@ -6,8 +6,13 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Database = require('./config/database');
-const authentication = require('./routes/authentication')(router);
+const fileUpload = require('express-fileupload');
 
+// routes
+const authentication = require('./routes/authentication')(router);
+const profile = require('./routes/profile')(router);
+
+// cors
 const cors = require('cors');
 
 // mongoose connection
@@ -18,7 +23,7 @@ mongoose.connect(Database.uri, {useNewUrlParser: true, useCreateIndex: true}, (e
 
 // body parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // express static folder
 app.use(express.static(__dirname + '/client/dist/client'));
@@ -30,8 +35,12 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// express file-upload
+app.use(fileUpload());
+
 // requests
 app.use('/authentication', authentication);
+app.use('/profile', profile);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/dist/client/index.html'));

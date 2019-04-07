@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
                 if (!data.success) {
                     this.alertClass = 'alert-danger';
                 } else {
-                    console.log(data);
                     this.alertClass = 'alert-success';
                     this.loginService.storeUserData(data.token, data.user);
 
