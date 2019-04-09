@@ -26,10 +26,11 @@ export class ProfileComponent implements OnInit {
     userEmail;
     userCity;
     userAdress;
-
     isUploaded: boolean;
-    selectedFile: ImageSnippet;
+    pending: boolean = false;
+    status: string = 'init';
 
+    selectedFile: ImageSnippet;
     form: FormGroup;
 
     constructor(
@@ -38,9 +39,19 @@ export class ProfileComponent implements OnInit {
         private formBuilder: FormBuilder
     ) {
         this.form = this.formBuilder.group({
-            avatar: new FormControl(''),
-            asa: new FormControl('')
+            avatar: new FormControl('')
         });
+    }
+
+    private onSuccess(): void {
+        this.pending = false;
+        this.status = 'ok';
+    }
+
+    private onError(): void {
+        this.pending = false;
+        this.status = 'fail';
+        this.selectedFile.src = '';
     }
 
     processFile(imageInput: any) {
@@ -49,6 +60,7 @@ export class ProfileComponent implements OnInit {
 
         reader.addEventListener('load', (event: any) => {
             this.selectedFile = new ImageSnippet(event.target.result, file);
+            this.pending = true;
             this.isUploaded = true;
         });
 
@@ -58,7 +70,10 @@ export class ProfileComponent implements OnInit {
     submitForm() {
         this.imageService.uploadImage(this.selectedFile.file)
             .subscribe( data => {
-                console.log(data);
+                if(data.success)
+                    this.status = 'ok';
+                else
+                    this.status = 'fail';
             });
     }
 

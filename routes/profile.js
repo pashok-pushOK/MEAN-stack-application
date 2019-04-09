@@ -1,3 +1,4 @@
+const avatarSchema = require('../models/avatar.model');
 const fileUpload = require('express-fileupload');
 const path = require('path');
 
@@ -15,7 +16,15 @@ module.exports = (router) => {
             if(error) {
                 res.json({success: false, message: `Error: ${error}`});
             } else {
-                res.json({success: true, message: 'Image has been uploaded!'});
+                avatarSchema.create({
+                    avatar: image.name
+                }, (err, avatar) => {
+                    if(err) {
+                        res.json({success: false, message: err})
+                    } else {
+                        res.json({success: true, message: 'Image has been uploaded!'});
+                    }
+                });
             }
         });
     });

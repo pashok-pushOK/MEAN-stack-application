@@ -17,7 +17,18 @@
 }
 
 .user-form .form-bg {
+    position: relative;
     height: 100%;
+}
+
+.user-form .form-bg::after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .user-form .form-bg img {
@@ -29,4 +40,20 @@
 
 mat-form-field {
     width: 100%;
+}
+
+.user-form button[mat-flat-button] {
+    width: 100px;
+}
+
+.user-forms {
+    width: 100%;
+    max-width: 400px;
+}
+
+.mat-form-custom-field {
+    padding: 12px 24px 3px;
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 3px 0 lightgray;
+    border-radius: 4px;
 }

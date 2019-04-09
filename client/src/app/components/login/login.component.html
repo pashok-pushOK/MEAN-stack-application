@@ -1,38 +1,42 @@
 <div class="user-form">
-
     <div class="login-page">
         <div class="row">
 
             <div class="col-6 col-sm-6">
+
                 <div class="form-bg">
-                    <img src="../../../assets/images/bg-01.jpg" alt="aaa">
+                    <img src="../../../assets/images/img1.jpg" alt="aaa">
                 </div>
+
             </div>
+            <div class="col-6 col-sm-6 d-flex align-items-center justify-content-center w-100 h-100">
 
-            <div class="col-6 col-sm-6">
-                <div class="d-flex align-items-center w-100 h-100">
-
+                <div class="user-forms">
                     <form method="post" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
                         <div class="alert alert-dismissible show fade" [ngClass]="alertClass" *ngIf="alertClass">
                             <span>Message: {{responseMessage}}</span>
                         </div>
                         <div class="form-group">
-                            <mat-form-field>
-                                <input matInput placeholder="Username" type="text" formControlName="userName">
-                            </mat-form-field>
+                            <div class="mat-form-custom-field">
+                                <mat-form-field>
+                                    <input matInput placeholder="Username" type="text" formControlName="userName">
+                                </mat-form-field>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <mat-form-field>
-                                <input matInput placeholder="Password" type="password" formControlName="userPassword">
-                            </mat-form-field>
+                            <div class="mat-form-custom-field">
+                                <mat-form-field>
+                                    <input color="primary" matInput placeholder="Password" type="password"
+                                           formControlName="userPassword">
+                                </mat-form-field>
+                            </div>
                         </div>
-                        <button mat-flat-button color="primary">Login</button>
+                        <button mat-stroked-button>Login</button>
                     </form>
-
                 </div>
+
             </div>
 
         </div>
     </div>
-
 </div>

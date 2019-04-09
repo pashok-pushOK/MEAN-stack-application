@@ -8,7 +8,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import {
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatChipsModule
 } from "@angular/material";
 
 // services
@@ -53,7 +55,9 @@ import {RegisterComponent} from './components/register/register.component';
         HttpClientModule,
         BrowserAnimationsModule,
         MatInputModule,
-        MatButtonModule
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        MatChipsModule
     ],
     providers: [AuthService],
     bootstrap: [AppComponent]

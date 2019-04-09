@@ -12,9 +12,16 @@
                             <img [src]="selectedFile.src" [alt]="selectedFile.name">
                         </ng-template>
                     </div>
+                    <div class="alert alert-info mb-4" *ngIf="status !== 'init'">
+                        <span *ngIf="status === 'ok'">Image uploaded successfully!</span>
+                        <span *ngIf="status === 'fail'">Failed to upload an image</span>
+                    </div>
                     <label for="avatarLabel">
-                        <!--<button mat-button onclick="document.getElementById('avatarLabel').click()">Change image</button>-->
+                        <mat-chip-list>
+                            <mat-chip>Change photo</mat-chip>
+                        </mat-chip-list>
                         <input
+                            hidden
                             #imageInput
                             (change)="processFile(imageInput)"
                             type="file"
@@ -23,8 +30,14 @@
                             formControlName="avatar"
                         >
                     </label>
-                    <input type="text" formControlName="asa" style="border: 1px solid red">
-                    <button type="submit" mat-flat-button color="warn">save</button>
+                    <div class="mb-4 mt-4" *ngIf="status !== 'init'">
+                        <mat-spinner diameter="50"></mat-spinner>
+                    </div>
+                    <div class="d-flex mb-5">
+                        <button [disabled]="status == 'fail'" type="submit" mat-flat-button color="primary"
+                                class="ml-2 mr-2">Edit
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
