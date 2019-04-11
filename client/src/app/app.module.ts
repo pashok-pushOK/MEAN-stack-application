@@ -10,7 +10,8 @@ import {
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
 } from "@angular/material";
 
 // services
@@ -57,7 +58,8 @@ import {RegisterComponent} from './components/register/register.component';
         MatInputModule,
         MatButtonModule,
         MatProgressSpinnerModule,
-        MatChipsModule
+        MatChipsModule,
+        MatSelectModule
     ],
     providers: [AuthService],
     bootstrap: [AppComponent]

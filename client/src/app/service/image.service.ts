@@ -5,6 +5,9 @@ import {Observable} from "rxjs";
 export interface image {
     success: boolean;
     message: string;
+    userId: string;
+    userPhoto: string;
+    userName: string;
 }
 
 @Injectable({
@@ -12,16 +15,31 @@ export interface image {
 })
 export class ImageService {
 
+    formData = new FormData();
+
     constructor(
         private http: HttpClient
     ) {
     }
 
     uploadImage(image): Observable<image> {
-        const formData = new FormData();
+        this.formData.append('image', image.image);
+        this.formData.append('userId', image.userId);
+        return this.http.post<image>(`http://localhost/profile/changeImage`, this.formData);
+    }
 
-        formData.append('image', image);
+    getUserPhoto(name, id): Observable<image> {
+        const data = {
+            userName: name,
+            userId: id
+        };
+        return this.http.post<image>(`http://localhost/profile/${data.userName}`, data);
+    }
 
-        return this.http.post<image>('http://localhost/profile/changeImage', formData);
+    updateUserPhoto(files): Observable<image> {
+        this.formData.append('image', files.image);
+        this.formData.append('userId', files.userId);
+        this.formData.append('userName', files.userName);
+        return this.http.post<image>(`http://localhost/profile/updatePhoto/${this.formData.get('userName')}`, this.formData);
     }
 }

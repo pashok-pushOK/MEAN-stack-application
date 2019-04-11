@@ -4,6 +4,10 @@ const avatarSchema = mongoose.Schema({
     avatar: {
         type: String,
         default: 'no-photo.png'
+    },
+    userId: {
+        type: String,
+        unique: true
     }
 });
 

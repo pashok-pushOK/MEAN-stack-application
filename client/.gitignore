@@ -1,5 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+/client/src/assets/uploads/avatars
+
 # compiled output
 /dist
 /tmp

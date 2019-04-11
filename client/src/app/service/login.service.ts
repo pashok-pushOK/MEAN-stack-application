@@ -13,7 +13,8 @@ export interface loginInterface {
         userId: string,
         userName: string,
         userEmail: string,
-        userCity: string
+        userCity: string,
+        _id: string
     }
 }
 

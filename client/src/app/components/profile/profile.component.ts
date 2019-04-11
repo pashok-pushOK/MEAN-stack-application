@@ -26,10 +26,12 @@ export class ProfileComponent implements OnInit {
     userEmail;
     userCity;
     userAdress;
-    isUploaded: boolean;
+    userId;
+    userPhoto: string;
+
+    isUploaded: boolean = false;
     pending: boolean = false;
     status: string = 'init';
-
     selectedFile: ImageSnippet;
     form: FormGroup;
 
@@ -43,38 +45,48 @@ export class ProfileComponent implements OnInit {
         });
     }
 
-    private onSuccess(): void {
-        this.pending = false;
-        this.status = 'ok';
-    }
-
-    private onError(): void {
-        this.pending = false;
-        this.status = 'fail';
+    private defaultPhoto(): void {
         this.selectedFile.src = '';
+        this.isUploaded = false;
+        this.pending = false;
     }
 
     processFile(imageInput: any) {
-        const file: File = imageInput.files[0];
-        const reader = new FileReader();
+        if(imageInput.files[0] || imageInput.files) {
+            let reader = new FileReader();
 
-        reader.addEventListener('load', (event: any) => {
-            this.selectedFile = new ImageSnippet(event.target.result, file);
-            this.pending = true;
-            this.isUploaded = true;
-        });
+            reader.onload = (event: any) => {
+                this.selectedFile = new ImageSnippet(event.target.result, imageInput.files[0]);
+                this.pending = false;
+                this.isUploaded = true;
+            };
 
-        reader.readAsDataURL(file);
+            reader.readAsDataURL(imageInput.files[0]);
+        } else {
+            this.isUploaded = false;
+            this.pending = false;
+            this.status = 'exit';
+        }
     }
 
     submitForm() {
-        this.imageService.uploadImage(this.selectedFile.file)
-            .subscribe( data => {
-                if(data.success)
-                    this.status = 'ok';
-                else
-                    this.status = 'fail';
-            });
+        const obj = {
+            image: this.selectedFile.file,
+            userId: this.userId,
+            userName: this.userName
+        };
+
+        if(!this.userPhoto) {
+            this.imageService.uploadImage(obj)
+                .subscribe(data => {
+                    console.info(data);
+                });
+        } else {
+            this.imageService.updateUserPhoto(obj)
+                .subscribe(data => {
+                    console.log(data);
+                });
+        }
     }
 
     ngOnInit() {
@@ -84,6 +96,12 @@ export class ProfileComponent implements OnInit {
                 this.userEmail = profile.user.userEmail;
                 this.userCity = profile.user.userCity;
                 this.userAdress = profile.user.userAdress;
+                this.userId = profile.user._id;
+
+                this.imageService.getUserPhoto(this.userName, this.userId)
+                    .subscribe(data => {
+                        this.userPhoto = `assets/uploads/avatars/${data.userPhoto}`;
+                    });
             });
     }
 
