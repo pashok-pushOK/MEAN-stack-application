@@ -55,6 +55,28 @@ input, textarea {
     outline: none;
 }
 
+
+/* styles */
+
+
+table {
+    width: 100%;
+}
+
+.mat-tab-label,
+.mat-tab-link,
+.mat-tab-group {
+    font-family: "Hind Madurai", sans-serif;
+}
+
+.mat-tab-link,
+.mat-tab-label {
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+
 /* I C O N S */
 
 @font-face {

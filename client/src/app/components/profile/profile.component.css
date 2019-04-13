@@ -19,3 +19,41 @@
     object-fit: cover;
     object-position: center;
 }
+
+.tab-button-item {
+    display: block;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    max-width: 200px;
+    margin-right: 5px;
+    padding: 10px 15px 20px;
+    white-space: nowrap;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.tab-button-item.active {
+    background-color: #3f51b5;
+    color: white;
+}
+
+.form-tabs-content {
+    position: relative;
+    top: -6px;
+    width: 100%;
+    max-width: 100%;
+    padding: 25px 20px;
+    background-color: white;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.form-tabs--item_content {
+    display: none;
+}
+
+.form-tabs--item_content.active {
+    display: block;
+}

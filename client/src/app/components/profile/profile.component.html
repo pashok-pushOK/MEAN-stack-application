@@ -1,70 +1,109 @@
 <div class="container">
     <div class="profile-block">
-        <div class="row">
 
-            <div class="col-sm-12 col-md-4 col-lg-6">
-                <form [formGroup]="form" (ngSubmit)="submitForm()" method="post" enctype="multipart/form-data">
-                    <div class="d-flex flex-column align-items-center">
-                        <div class="profile-avatar">
-                            <div class="w-100 h-100" *ngIf="userPhoto && !isUploaded; else second;">
-                                <img [src]="userPhoto" [alt]="userPhoto">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="personal-data">
+                    <form [formGroup]="form" (ngSubmit)="submitForm()" method="post" enctype="multipart/form-data">
+
+                        <div class="d-flex">
+                            <div class="profile-avatar mr-5">
+                                <div class="w-100 h-100" *ngIf="userPhoto && !isUploaded; else second;">
+                                    <img [src]="userPhoto" [alt]="userPhoto">
+                                </div>
+                                <ng-template #second>
+                                    <ng-container *ngIf="!isUploaded && !userPhoto; else third">
+                                        <img src="../../../assets/images/no-photo.png" alt="no-photo">
+                                    </ng-container>
+                                </ng-template>
+                                <ng-template #third>
+                                    <img [src]="selectedFile.src" [alt]="selectedFile.name">
+                                </ng-template>
                             </div>
 
-                            <ng-template #second>
-                                <ng-container *ngIf="!isUploaded && !userPhoto; else third">
-                                    <img src="../../../assets/images/no-photo.png" alt="no-photo">
-                                </ng-container>
-                            </ng-template>
+                            <div>
+                                <h1 class="display-5 mb-5">{{userName}}</h1>
 
-                            <ng-template #third>
-                                <img [src]="selectedFile.src" [alt]="selectedFile.name">
-                            </ng-template>
+                                <div class="d-flex flex-column">
+                                    <label for="avatarLabel">
+                                        <mat-chip-list>
+                                            <mat-chip selected>Change photo</mat-chip>
+                                        </mat-chip-list>
+                                        <input hidden #imageInput (change)="processFile(imageInput)"
+                                               type="file" accept="image/*" id="avatarLabel" formControlName="avatar">
+                                    </label>
+                                    <mat-chip-list *ngIf="isUploaded">
+                                        <mat-chip color="warn" (click)="defaultPhoto()">Reset</mat-chip>
+                                    </mat-chip-list>
+                                </div>
+                            </div>
                         </div>
-                        <div
-                            class="alert mb-4"
-                            *ngIf="status !== 'init'"
-                            [ngClass]="{'alert-success': status === 'ok', 'alert-danger': status === 'fail', 'alert-info': status === 'exit'}"
-                        >
-                            <span *ngIf="status === 'ok'">Image uploaded successfully!</span>
-                            <span *ngIf="status === 'fail'">Failed to upload an image !</span>
-                            <span *ngIf="status === 'exit'">Did you upload an image ??</span>
+
+                    </form>
+
+                    <div>
+                        <div class="form-tabs mt-4">
+                            <div class="d-flex flex-wrap">
+                                <div class="tab-button-item tab-button active"
+                                     (click)="toggleTabs($event, 'PersonalData')">Personal Data
+                                </div>
+                                <div class="tab-button-item tab-button" (click)="toggleTabs($event, 'Posts')">Posts
+                                </div>
+                            </div>
+                            <div class="form-tabs-content">
+                                <div class="form-tabs--item_content active" id="PersonalData">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Email: <span
+                                            class="font-weight-bold">{{userEmail}}</span></li>
+                                        <li class="list-group-item">City: <span
+                                            class="font-weight-bold">{{userCity}}</span>
+                                        </li>
+                                        <li class="list-group-item" *ngIf="userAdress">Adress: <span
+                                            class="font-weight-bold">{{userAdress}}</span></li>
+                                        <li class="list-group-item">Status: <span class="font-weight-bold">...</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="form-tabs--item_content" id="Posts">
+                                    <form method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <mat-form-field class="w-100">
+                                                <mat-select placeholder="Post Category">
+                                                    <mat-option value="option 1">Option 1</mat-option>
+                                                    <mat-option value="option 2">Option 2</mat-option>
+                                                    <mat-option value="option 3">Option 3</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <mat-form-field class="w-100">
+                                                <input matInput type="text" placeholder="Title">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <mat-form-field class="w-100">
+                                                <textarea matInput placeholder="Textarea"></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-4 mt-4" *ngIf="pending">
-                            <mat-spinner diameter="50"></mat-spinner>
-                        </div>
-                        <div class="d-flex flex-column align-items-center mb-5">
-                            <label for="avatarLabel">
-                                <mat-chip-list>
-                                    <mat-chip selected>Change photo</mat-chip>
-                                </mat-chip-list>
-                                <input hidden #imageInput (change)="processFile(imageInput)"
-                                       type="file" accept="image/*" id="avatarLabel" formControlName="avatar">
-                            </label>
-                            <mat-chip-list>
-                                <mat-chip color="warn" *ngIf="isUploaded" (click)="defaultPhoto()">Reset</mat-chip>
-                            </mat-chip-list>
+
+                        <div class="d-flex mt-4">
+                            <button mat-raised-button (click)="logOut()" class="mr-3">Log out</button>
+                            <button (click)="submitForm()" [disabled]="!isUploaded" type="submit" mat-raised-button
+                                    color="primary">Save
+                            </button>
                         </div>
                     </div>
-                </form>
-            </div>
 
-            <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                <ul class="list-group pb-4">
-                    <li class="list-group-item">Username: <span class="font-weight-bold">{{userName}}</span></li>
-                    <li class="list-group-item">Email: <span class="font-weight-bold">{{userEmail}}</span></li>
-                    <li class="list-group-item">City: <span class="font-weight-bold">{{userCity}}</span></li>
-                    <li class="list-group-item" *ngIf="userAdress">Adress: <span
-                        class="font-weight-bold">{{userAdress}}</span></li>
-                    <li class="list-group-item">Status: <span class="font-weight-bold">...</span></li>
-                </ul>
-                <div class="d-flex">
-                    <button mat-raised-button (click)="logOut()" class="mr-3">Log out</button>
-                    <button (click)="submitForm()" [disabled]="!isUploaded" type="submit" mat-raised-button
-                            color="primary">Save
-                    </button>
                 </div>
             </div>
-
         </div>
+
     </div>
 </div>

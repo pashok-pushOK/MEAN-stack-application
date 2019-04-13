@@ -89,6 +89,22 @@ export class ProfileComponent implements OnInit {
         }
     }
 
+    logOut() {
+        this.loginService.logOut();
+    }
+
+    toggleTabs(event, label): void {
+        let i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName('form-tabs--item_content');
+        tablinks = document.getElementsByClassName('tab-button');
+        for(i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove('active');
+            tablinks[i].className = tablinks[i].className.replace('active', '');
+        }
+        document.getElementById(label).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
     ngOnInit() {
         this.loginService.getUserProfile()
             .subscribe(profile => {
@@ -103,10 +119,6 @@ export class ProfileComponent implements OnInit {
                         this.userPhoto = `assets/uploads/avatars/${data.userPhoto}`;
                     });
             });
-    }
-
-    logOut() {
-        this.loginService.logOut();
     }
 
 }
