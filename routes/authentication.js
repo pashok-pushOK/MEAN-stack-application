@@ -121,7 +121,7 @@ module.exports = (router) => {
                                 });
                             }
                         } else {
-                            res.json({success: false, message: 'Username is not found in database!'})
+                            res.json({success: false, message: 'Username not found!'})
                         }
                     }
                 });

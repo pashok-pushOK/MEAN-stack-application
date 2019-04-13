@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {BlogDataService} from "../../service/blog-data.service";
 
 @Component({
     selector: 'app-home',
@@ -7,10 +8,19 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-    constructor() {
+    blogCards = [];
+
+    constructor(
+        private blogDataService: BlogDataService
+    ) {
+    }
+
+    getBlogData() {
+        this.blogCards = this.blogDataService.getBlogData();
     }
 
     ngOnInit() {
+        this.getBlogData();
     }
 
 }
