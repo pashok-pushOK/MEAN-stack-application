@@ -1,34 +1,9 @@
 .user-form {
-    height: 100%;
-    padding-top: 76px;
-    display: flex;
-    padding-bottom: 25px;
+    padding-top: 66px;
 }
 
 .user-form .row {
     height: 100%;
-}
-
-.user-form .login-page {
-    width: 100%;
-    height: calc(100vh - 76px);
-    overflow: hidden;
-    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.15);
-}
-
-.user-form .form-bg {
-    position: relative;
-    height: 100%;
-}
-
-.user-form .form-bg::after {
-    position: absolute;
-    content: '';
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .user-form .form-bg img {
@@ -48,12 +23,15 @@ mat-form-field {
 
 .user-forms {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
+    margin: auto 15px;
+    padding: 40px 25px 25px;
+    border-radius: 4px;
 }
 
 .mat-form-custom-field {
     padding: 12px 24px 3px;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.015);
     box-shadow: 0 0 3px 0 lightgray;
     border-radius: 4px;
 }

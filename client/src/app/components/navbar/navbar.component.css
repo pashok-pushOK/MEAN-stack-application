@@ -1,34 +1,18 @@
-.header-left-side--logo a, .header-left-side--logo span {
-    font-weight: 400;
-    font-size: 30px;
-    color: black;
-    text-transform: uppercase;
-    user-select: none;
-}
-
-.header-left-side--menu li,
-.header-right-side--menu li {
-    margin-right: 35px;
-}
-.header-left-side--menu li:last-child,
-.header-right-side--menu li:last-child {
-    margin-right: 0;
-}
 .header-left-side--menu li a,
 .header-right-side--menu li a {
-    position: relative;
     font-size: 13px;
     font-weight: 500;
     text-transform: uppercase;
-    color: black;
-    transition: color 0.25s ease-in, border 0.25s ease-in;
 }
-.header-left-side--menu li a:hover, .header-left-side--menu li a:focus, .header-left-side--menu li a:active, .header-left-side--menu li a.active,
+.header-left-side--menu li a:hover,
+.header-left-side--menu li a:focus,
+.header-left-side--menu li a:active,
+.header-left-side--menu li a.active,
 .header-right-side--menu li a:hover,
 .header-right-side--menu li a:focus,
 .header-right-side--menu li a:active,
 .header-right-side--menu li a.active {
-    color: #00ad5f;
+    color: gray;
 }
 
 .navbar {
@@ -39,5 +23,5 @@
     width: 100%;
     z-index: 99;
     background-color: white;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1);
 }

@@ -7,8 +7,6 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-    componentTitle: string = 'MEAN Stack Application';
-
     constructor() {
     }
 

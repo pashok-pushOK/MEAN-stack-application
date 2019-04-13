@@ -1,53 +1,60 @@
 <section class="section section-cards">
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-2">Blog</h1>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 blog-col mb-4" *ngFor="let blogCard of blogCardsArr">
                 <app-blog-card [blogCard]="blogCard"></app-blog-card>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12 d-flex justify-content-center">
-                <app-pagination></app-pagination>
-            </div>
-        </div>
+<!--        <div class="row">-->
+<!--            <div class="col-md-12 d-flex justify-content-center">-->
+<!--                <app-pagination></app-pagination>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </section>
 
-<div class="Container">
-    <div class="Subscribe">
-        <h3>Subscribe to our newsletter</h3>
-        <p>Weekly animation tutorials delivered straight to your inbox</p>
-        <form action="#">
-            <input type="text" placeholder="Email Address"/>
-            <button>Subscribe</button>
-        </form>
-        <div class="Loading">
-            <div class="LoadingDot"></div>
-            <div class="LoadingDot"></div>
-            <div class="LoadingDot"></div>
-            <div class="LoadingDot"></div>
-            <span>Subscribing</span>
-        </div>
-        <div class="Complete">
-            <div class="Tick">
+<!--<div class="Container">-->
+<!--    <div class="Subscribe">-->
+<!--        <h3>Subscribe to our newsletter</h3>-->
+<!--        <p>Weekly animation tutorials delivered straight to your inbox</p>-->
+<!--        <form action="#">-->
+<!--            <input type="text" placeholder="Email Address"/>-->
+<!--            <button>Subscribe</button>-->
+<!--        </form>-->
+<!--        <div class="Loading">-->
+<!--            <div class="LoadingDot"></div>-->
+<!--            <div class="LoadingDot"></div>-->
+<!--            <div class="LoadingDot"></div>-->
+<!--            <div class="LoadingDot"></div>-->
+<!--            <span>Subscribing</span>-->
+<!--        </div>-->
+<!--        <div class="Complete">-->
+<!--            <div class="Tick">-->
 
-                <svg width="32px" height="25px" viewBox="0 0 32 25">
-                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                        <g id="Artboard" transform="translate(-384.000000, -217.000000)" fill-rule="nonzero"
-                           fill="#FFFFFF">
-                            <g id="Group" transform="translate(360.000000, 189.000000)">
-                                <path
-                                    d="M27.4142136,40.5857864 C26.633165,39.8047379 25.366835,39.8047379 24.5857864,40.5857864 C23.8047379,41.366835 23.8047379,42.633165 24.5857864,43.4142136 L34,52.8284271 L55.4142136,31.4142136 C56.1952621,30.633165 56.1952621,29.366835 55.4142136,28.5857864 C54.633165,27.8047379 53.366835,27.8047379 52.5857864,28.5857864 L34,47.1715729 L27.4142136,40.5857864 Z"
-                                    id="Path-2"></path>
-                            </g>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-            <h4>Thank you for subscribing</h4>
-            <span>You will receive a confirmation email shortly</span>
-        </div>
-    </div>
-    <small>This form is an animation demo and will not store any provided data.</small>
-</div>
+<!--                <svg width="32px" height="25px" viewBox="0 0 32 25">-->
+<!--                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">-->
+<!--                        <g id="Artboard" transform="translate(-384.000000, -217.000000)" fill-rule="nonzero"-->
+<!--                           fill="#FFFFFF">-->
+<!--                            <g id="Group" transform="translate(360.000000, 189.000000)">-->
+<!--                                <path-->
+<!--                                    d="M27.4142136,40.5857864 C26.633165,39.8047379 25.366835,39.8047379 24.5857864,40.5857864 C23.8047379,41.366835 23.8047379,42.633165 24.5857864,43.4142136 L34,52.8284271 L55.4142136,31.4142136 C56.1952621,30.633165 56.1952621,29.366835 55.4142136,28.5857864 C54.633165,27.8047379 53.366835,27.8047379 52.5857864,28.5857864 L34,47.1715729 L27.4142136,40.5857864 Z"-->
+<!--                                    id="Path-2"></path>-->
+<!--                            </g>-->
+<!--                        </g>-->
+<!--                    </g>-->
+<!--                </svg>-->
+<!--            </div>-->
+<!--            <h4>Thank you for subscribing</h4>-->
+<!--            <span>You will receive a confirmation email shortly</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <small>This form is an animation demo and will not store any provided data.</small>-->
+<!--</div>-->
