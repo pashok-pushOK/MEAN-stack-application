@@ -12,7 +12,8 @@ import {LoginService} from "../../service/login.service";
 export class NavbarComponent implements OnInit {
 
     public activeRoute;
-    public profileName: string = localStorage.getItem('userName') || '';
+    public profileName: string;
+    public isLoggedIn: boolean;
 
     constructor(
         private router: Router,
@@ -39,12 +40,12 @@ export class NavbarComponent implements OnInit {
         });
     }
 
-    public isLoggedIn: boolean = this.notAuthGuard.canActivate();
-
     public logOut(): void {
         this.loginService.logOut();
     }
 
     ngOnInit() {
+        // this.isLoggedIn = this.notAuthGuard.canActivate();
+        // this.profileName = localStorage.getItem('userName');
     }
 }

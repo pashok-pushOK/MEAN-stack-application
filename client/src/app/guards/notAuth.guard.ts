@@ -14,12 +14,13 @@ export class NotAuthGuard implements CanActivate {
     ) {}
 
     canActivate(): boolean {
-        if(this.authService.isTokenExpired()) {
-            this.router.navigateByUrl('/home');
-            return true;
-        } else {
-            this.router.navigateByUrl('/register');
-            return false;
-        }
+        // if(this.authService.isTokenExpired()) {
+        //     this.router.navigateByUrl('/home');
+        //     return true;
+        // } else {
+        //     this.router.navigateByUrl('/register');
+        //     return false;
+        // }
+        return
     }
 }

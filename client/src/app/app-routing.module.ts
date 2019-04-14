@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     {
         path: 'register',
         component: RegisterComponent,
-        canActivate: [NotAuthGuard]
+        // canActivate: [NotAuthGuard]
     },
     {
         path: '**',
