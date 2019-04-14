@@ -6,13 +6,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from "./app-routing.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
+// import angular material modules
 import {
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatChipsModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule
 } from "@angular/material";
 
 // services
@@ -60,7 +62,8 @@ import {RegisterComponent} from './components/register/register.component';
         MatProgressSpinnerModule,
         MatChipsModule,
         MatSelectModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatCardModule
     ],
     providers: [
         AuthService,

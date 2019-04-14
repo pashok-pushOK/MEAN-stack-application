@@ -1,23 +1,26 @@
-<div class="blog-card spring-fever"
-     [ngStyle]="{'background': 'url(../../../assets/images/' + blogCard.blogImg + ') center / cover no-repeat'}">
-    <a href="blog/post/{{blogCard.blogId}}">
-        <div class="title-content">
-            <h3>SPRING FEVER</h3>
-            <hr/>
-            <a href="blog/post/{{blogCard.blogId}}" class="intro">
-                {{blogCard.blogTitle}}
-            </a>
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+            <img [src]="'../../../assets/images/' + blogCard.blogImg" alt="alt">
         </div>
-        <div class="card-info">
-            {{blogCard.blogDesc}}
-        </div>
-        <div class="utility-info">
-            <ul class="utility-list">
-                <li class="comments">{{blogCard.blogComments}}</li>
-                <li class="date">{{blogCard.blogDatePublication}}</li>
-            </ul>
-        </div>
-        <div class="gradient-overlay"></div>
-        <div class="color-overlay"></div>
-    </a>
-</div>
+        <mat-card-title>{{blogCard.blogAuthorName}}</mat-card-title>
+        <mat-card-subtitle>{{blogCard.blogCategory}}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="example-card--image">
+        <img mat-card-image [src]="'../../../assets/images/' + blogCard.blogImg" alt="alt">
+    </div>
+    <mat-card-content>
+        <mat-card-title>{{blogCard.blogTitle}}</mat-card-title>
+        <mat-card-subtitle>SPRING FEVER</mat-card-subtitle>
+        <p>{{blogCard.blogDesc}}</p>
+        <ul class="utility-list">
+            <li class="comments">{{blogCard.blogComments}}</li>
+            <li class="date">{{blogCard.blogDatePublication}}</li>
+        </ul>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>LIKE</button>
+<!--        <a [href]="'blog/post/' + blogCard.blogId" mat-button>READ MORE</a>-->
+        <a routerLink="/blog/post/{{blogCard.blogId}}" mat-button>READ MORE</a>
+    </mat-card-actions>
+</mat-card>

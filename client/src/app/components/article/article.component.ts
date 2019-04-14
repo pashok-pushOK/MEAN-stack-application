@@ -19,14 +19,19 @@ export class ArticleComponent implements OnInit {
     ) {
     }
 
-    ngOnInit() {
-        this.getPost();
-    }
-
     getPost(): void {
         const id = this.route.snapshot.paramMap.get('id');
         this.blogDataService.getPost(id)
-            .subscribe(post => this.post = post);
+            .subscribe(post => {
+                this.post = post;
+
+                // i don't know why page scroll to bottom when browser goes to /blog/post/:id
+                // so I decided to use next line, but I don't like this
+                window.scrollTo(0, 0);
+            });
     }
 
+    ngOnInit() {
+        this.getPost();
+    }
 }
