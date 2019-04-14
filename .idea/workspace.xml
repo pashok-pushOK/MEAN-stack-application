@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d456d01-1b80-4fb1-8541-d6444079dede" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/components/article/article.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/components/article/article.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/components/blog-card/blog-card.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/components/blog-card/blog-card.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/components/blog-card/blog-card.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/components/blog-card/blog-card.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/components/blog/blog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/components/blog/blog.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/components/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/components/login/login.component.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,23 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/components/blog-card/blog-card.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/app/components/article/article.component.ts">
+        <entry file="file://$PROJECT_DIR$/client/src/app/components/login/login.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="216">
+              <caret line="9" column="76" lean-forward="true" selection-start-line="9" selection-start-column="76" selection-end-line="9" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -71,7 +55,6 @@
         <option value="$PROJECT_DIR$/client/src/app/service/image.service.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/navbar/navbar.component.css" />
         <option value="$PROJECT_DIR$/client/src/app/components/navbar/navbar.component.html" />
-        <option value="$PROJECT_DIR$/client/src/app/components/login/login.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/components/login/login.component.css" />
         <option value="$PROJECT_DIR$/client/src/app/components/about/about.component.css" />
         <option value="$PROJECT_DIR$/client/src/app/components/about/about.component.html" />
@@ -99,11 +82,12 @@
         <option value="$PROJECT_DIR$/client/src/app/components/home/home.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/components/home/home.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/components/blog/blog.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/components/blog-card/blog-card.component.css" />
         <option value="$PROJECT_DIR$/client/src/app/components/blog-card/blog-card.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/app-routing.module.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/article/article.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/blog/blog.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/components/login/login.component.html" />
       </list>
     </option>
   </component>
@@ -159,7 +143,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="article" type="462c0819:PsiDirectoryNode" />
+              <item name="blog" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mean-stack-application" type="b2602c69:ProjectViewProjectNode" />
@@ -168,7 +152,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="blog-card" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -235,12 +219,12 @@
       <workItem from="1555085623489" duration="6068000" />
       <workItem from="1555153086909" duration="24157000" />
       <workItem from="1555221530006" duration="1483000" />
-      <workItem from="1555225800657" duration="11331000" />
+      <workItem from="1555225800657" duration="11688000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128079000" />
+    <option name="totallyTimeSpent" value="128436000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="840" extended-state="6" />
@@ -534,16 +518,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/login/login.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="28" column="76" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="76" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/components/login/login.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -592,13 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1512">
           <caret line="63" column="1" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/blog/blog.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -668,6 +635,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/article/article.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="23" column="40" lean-forward="true" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/components/blog-card/blog-card.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="434">
@@ -675,13 +652,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/article/article.component.ts">
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/blog/blog.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="168">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/login/login.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="76" lean-forward="true" selection-start-line="9" selection-start-column="76" selection-end-line="9" selection-end-column="76" />
         </state>
       </provider>
     </entry>
