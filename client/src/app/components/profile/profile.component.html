@@ -44,14 +44,14 @@
                     <div>
                         <div class="form-tabs mt-4">
                             <div class="d-flex flex-wrap">
-                                <div class="tab-button-item tab-button active"
+                                <div class="tab-button-item tab-button"
                                      (click)="toggleTabs($event, 'PersonalData')">Personal Data
                                 </div>
-                                <div class="tab-button-item tab-button" (click)="toggleTabs($event, 'Posts')">Posts
+                                <div class="tab-button-item tab-button active" (click)="toggleTabs($event, 'Posts')">Posts
                                 </div>
                             </div>
                             <div class="form-tabs-content">
-                                <div class="form-tabs--item_content active" id="PersonalData">
+                                <div class="form-tabs--item_content" id="PersonalData">
                                     <ul class="list-group">
                                         <li class="list-group-item">Email: <span
                                             class="font-weight-bold">{{userEmail}}</span></li>
@@ -65,11 +65,13 @@
                                     </ul>
                                 </div>
 
-                                <div class="form-tabs--item_content" id="Posts">
-                                    <form method="post" enctype="multipart/form-data">
+                                <div class="form-tabs--item_content active" id="Posts">
+                                    <form [formGroup]="blogPostForm" method="post" enctype="application/x-www-form-urlencoded"
+                                          (ngSubmit)="submitBlogPostForm()">
                                         <div class="form-group">
                                             <mat-form-field class="w-100">
-                                                <mat-select placeholder="Post Category">
+                                                <mat-select placeholder="Post Category"
+                                                            formControlName="blogSelectCategory">
                                                     <mat-option value="option 1">Option 1</mat-option>
                                                     <mat-option value="option 2">Option 2</mat-option>
                                                     <mat-option value="option 3">Option 3</mat-option>
@@ -79,14 +81,32 @@
 
                                         <div class="form-group">
                                             <mat-form-field class="w-100">
-                                                <input matInput type="text" placeholder="Title">
+                                                <input matInput type="text" placeholder="New Post Category"
+                                                       formControlName="blogInputCategory">
                                             </mat-form-field>
                                         </div>
 
                                         <div class="form-group">
                                             <mat-form-field class="w-100">
-                                                <textarea matInput placeholder="Textarea"></textarea>
+                                                <input matInput type="text" placeholder="Title"
+                                                       formControlName="blogInputTitle">
                                             </mat-form-field>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <mat-form-field class="w-100">
+                                                <textarea matInput placeholder="Textarea"
+                                                          formControlName="blogInputText"></textarea>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input (change)="uploadPostImage(postImageInput)" #postImageInput type="file" placeholder="Choose an image"
+                                                   formControlName="blogInputImage">
+                                        </div>
+
+                                        <div>
+                                            <button mat-raised-button color="accent" type="submit">Create</button>
                                         </div>
                                     </form>
                                 </div>

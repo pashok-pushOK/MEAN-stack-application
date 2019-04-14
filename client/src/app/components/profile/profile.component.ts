@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../../service/login.service";
 import {ImageService} from "../../service/image.service";
+import {PostsService} from "../../service/posts.service";
 import {
     FormBuilder,
     FormGroup,
@@ -22,6 +23,7 @@ class ImageSnippet {
 })
 export class ProfileComponent implements OnInit {
 
+    // user data variables
     userName;
     userEmail;
     userCity;
@@ -29,28 +31,45 @@ export class ProfileComponent implements OnInit {
     userId;
     userPhoto: string;
 
+    // variables for image uploading
     isUploaded: boolean = false;
     pending: boolean = false;
     status: string = 'init';
     selectedFile: ImageSnippet;
     form: FormGroup;
 
+    // variables for creating a new blog post
+    selectedPostFile: ImageSnippet;
+    blogPostForm: FormGroup;
+
     constructor(
         private loginService: LoginService,
         private imageService: ImageService,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private postService: PostsService
     ) {
         this.form = this.formBuilder.group({
             avatar: new FormControl('')
         });
+
+        // Create blog post form group on page loads
+        this.blogPostForm = this.formBuilder.group({
+            blogSelectCategory: new FormControl(''),
+            blogInputCategory: new FormControl(''),
+            blogInputTitle: new FormControl(''),
+            blogInputText: new FormControl(''),
+            blogInputImage: new FormControl('')
+        });
     }
 
+    // method for resetting photo if user clicks button -> reset
     private defaultPhoto(): void {
         this.selectedFile.src = '';
         this.isUploaded = false;
         this.pending = false;
     }
 
+    // method for uploading a new image
     processFile(imageInput: any) {
         if(imageInput.files[0] || imageInput.files) {
             let reader = new FileReader();
@@ -69,6 +88,7 @@ export class ProfileComponent implements OnInit {
         }
     }
 
+    // method for submitting user photo form
     submitForm() {
         const obj = {
             image: this.selectedFile.file,
@@ -93,6 +113,7 @@ export class ProfileComponent implements OnInit {
         this.loginService.logOut();
     }
 
+    // method for toggling tabs
     toggleTabs(event, label): void {
         let i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName('form-tabs--item_content');
@@ -103,6 +124,39 @@ export class ProfileComponent implements OnInit {
         }
         document.getElementById(label).classList.add('active');
         event.currentTarget.classList.add('active');
+    }
+
+    uploadPostImage(postImageInput: any): void {
+        if(postImageInput.files || postImageInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = (event: any) => {
+                this.selectedPostFile = new ImageSnippet(event.target.result, postImageInput.files[0]);
+            };
+
+            reader.readAsDataURL(postImageInput.files[0]);
+        }
+    }
+
+    // method for submitting user created blog post
+    public submitBlogPostForm() {
+        const postObject = {
+            blogSelectCategory: this.blogPostForm.get('blogSelectCategory').value,
+            blogInputCategory: this.blogPostForm.get('blogInputCategory').value,
+            blogInputTitle: this.blogPostForm.get('blogInputTitle').value,
+            blogInputText: this.blogPostForm.get('blogInputText').value,
+            blogInputImage: this.selectedPostFile.file,
+            blogDatePublication: new Date().toLocaleDateString(),
+            blogAuthorId: this.userId,
+            blogAuthorName: this.userName
+        };
+
+        console.info(postObject);
+
+        this.postService.createPost(postObject)
+            .subscribe(res => {
+                console.log(res);
+            })
     }
 
     ngOnInit() {

@@ -1,6 +1,10 @@
 const avatarSchema = require('../models/avatar.model');
+const postSchema = require('../models/blog.model');
 const fileUpload = require('express-fileupload');
 const path = require('path');
+
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 module.exports = (router) => {
 
@@ -65,6 +69,14 @@ module.exports = (router) => {
                 });
             }
         });
+    });
+
+    router.post('/:userName/create-new-article', (req, res) => {
+        console.log(req.body);
+        console.log(req.body.blogInputImage);
+        console.log(req.files);
+
+        res.json({success: true, message: 'works'});
     });
 
     return router;

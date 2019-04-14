@@ -14,7 +14,10 @@ export class BlogDataService {
             blogDatePublication: '03.12.2019',
             blogTitle: 'Title 1. Just checking',
             blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
+            blogComments: 0,
+            blogAuthorId: '1lew1',
+            blogAuthorName: 'Name',
+            blogCategory: 'Sport'
         },
         {
             blogId: '1er223',
@@ -22,7 +25,10 @@ export class BlogDataService {
             blogDatePublication: '03.12.2019',
             blogTitle: 'Title 2. Just checking',
             blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
+            blogComments: 0,
+            blogAuthorId: '1lew1',
+            blogAuthorName: 'Name',
+            blogCategory: 'Sport'
         },
         {
             blogId: '1er224',
@@ -30,7 +36,10 @@ export class BlogDataService {
             blogDatePublication: '03.12.2019',
             blogTitle: 'Title 3. Just checking',
             blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
+            blogComments: 0,
+            blogAuthorId: '1lew1',
+            blogAuthorName: 'Name',
+            blogCategory: 'Sport'
         },
         {
             blogId: '1er225',
@@ -38,7 +47,10 @@ export class BlogDataService {
             blogDatePublication: '03.12.2019',
             blogTitle: 'Title 4. Just checking',
             blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
+            blogComments: 0,
+            blogAuthorId: '1lew1',
+            blogAuthorName: 'Name',
+            blogCategory: 'Sport'
         },
         {
             blogId: '1er226',
@@ -46,7 +58,10 @@ export class BlogDataService {
             blogDatePublication: '03.12.2019',
             blogTitle: 'Title 5. Just checking',
             blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
+            blogComments: 0,
+            blogAuthorId: '1lew1',
+            blogAuthorName: 'Name',
+            blogCategory: 'Sport'
         }
     ];
 
