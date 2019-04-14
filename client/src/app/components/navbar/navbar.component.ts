@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, Event, NavigationStart, NavigationEnd, NavigationError} from "@angular/router";
 import {ActivatedRoute} from "@angular/router";
+import {NotAuthGuard} from "../../guards/notAuth.guard";
 import {LoginService} from "../../service/login.service";
 
 @Component({
@@ -11,10 +12,12 @@ import {LoginService} from "../../service/login.service";
 export class NavbarComponent implements OnInit {
 
     public activeRoute;
+    public profileName: string = localStorage.getItem('userName') || '';
 
     constructor(
         private router: Router,
         public route: ActivatedRoute,
+        private notAuthGuard: NotAuthGuard,
         private loginService: LoginService
     ) {
         this.router.events.subscribe((event: Event) => {
@@ -34,6 +37,12 @@ export class NavbarComponent implements OnInit {
         //         // console.log(event.error);
         //     }
         });
+    }
+
+    public isLoggedIn: boolean = this.notAuthGuard.canActivate();
+
+    public logOut(): void {
+        this.loginService.logOut();
     }
 
     ngOnInit() {
