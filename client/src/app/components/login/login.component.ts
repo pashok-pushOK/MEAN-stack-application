@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl} from "@angular/forms";
 import {LoginService} from "../../service/login.service";
+import {FlashMessageService} from "../../service/flash-message.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private loginService: LoginService,
-        private router: Router
+        private router: Router,
+        private flashMessageService: FlashMessageService
     ) {
         this.formLogin = this.formBuilder.group({
             userName: new FormControl(''),
@@ -37,13 +39,9 @@ export class LoginComponent implements OnInit {
                 if (!data.success) {
                     this.alertClass = 'alert-danger';
                 } else {
-                    this.alertClass = 'alert-success';
                     this.loginService.storeUserData(data.token, data.user);
-
-                    setTimeout(_ => {
-                        this.router.navigate([`/profile/${data.user.userName}`]);
-                    }, 2000);
-
+                    this.router.navigate([`/profile/${data.user.userName}`]);
+                    this.flashMessageService.openSnackBar('You have just logged in!');
                 }
             });
     }

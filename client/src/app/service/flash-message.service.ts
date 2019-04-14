@@ -1,16 +1,23 @@
 import {Injectable} from '@angular/core';
+import {MatSnackBar} from "@angular/material";
 
 @Injectable({
     providedIn: 'root'
 })
 export class FlashMessageService {
 
-    public output: string;
+    public durationInSeconds: number = 4;
 
-    public generateFlashMessage(message: string, isVisible: boolean = true) {
-        return this.output = message;
+    openSnackBar(message) {
+        this.snackBar.open(message, '', {
+            duration: this.durationInSeconds * 1000,
+            horizontalPosition: "right",
+            verticalPosition: "top"
+        });
     }
 
-    constructor() {
+    constructor(
+        private snackBar: MatSnackBar
+    ) {
     }
 }

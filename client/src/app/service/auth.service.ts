@@ -27,4 +27,16 @@ export class AuthService {
     checkUserEmail(useremail): Observable<registerResponse> {
         return this.httpClient.get<registerResponse>(`http://localhost/authentication/checkEmail/${useremail}`)
     }
+
+    getToken(): string {
+        return localStorage.getItem('token');
+    }
+
+    isTokenExpired(): boolean {
+        let token = this.getToken();
+        if(token)
+            return true;
+        else
+            return false;
+    }
 }

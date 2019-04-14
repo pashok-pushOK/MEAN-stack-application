@@ -11,11 +11,13 @@ import {
     MatButtonModule,
     MatProgressSpinnerModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
 } from "@angular/material";
 
 // services
 import {AuthService} from './service/auth.service';
+import {AuthGuard} from "./guards/auth.guard";
 
 // components
 import {AppComponent} from './app.component';
@@ -25,7 +27,6 @@ import {BlogComponent} from './components/blog/blog.component';
 import {BlogCardComponent} from './components/blog-card/blog-card.component';
 import {ErrorComponent} from './components/error/error.component';
 import {HomeComponent} from './components/home/home.component';
-import {FlashMessageComponent} from './components/flash-message/flash-message.component';
 import {LoginComponent} from './components/login/login.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {PaginationComponent} from './components/pagination/pagination.component';
@@ -41,7 +42,6 @@ import {RegisterComponent} from './components/register/register.component';
         BlogCardComponent,
         ErrorComponent,
         HomeComponent,
-        FlashMessageComponent,
         LoginComponent,
         NavbarComponent,
         PaginationComponent,
@@ -59,9 +59,13 @@ import {RegisterComponent} from './components/register/register.component';
         MatButtonModule,
         MatProgressSpinnerModule,
         MatChipsModule,
-        MatSelectModule
+        MatSelectModule,
+        MatSnackBarModule
     ],
-    providers: [AuthService],
+    providers: [
+        AuthService,
+        AuthGuard
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

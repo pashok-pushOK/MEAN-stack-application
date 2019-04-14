@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
@@ -35,9 +35,6 @@ export class LoginService {
     ) {
     }
 
-    ngOnInit() {
-    }
-
     login(user): Observable<loginInterface> {
         return this.http.post<loginInterface>('http://localhost/authentication/login', user);
     }
@@ -47,10 +44,8 @@ export class LoginService {
         this.authToken = null;
         localStorage.clear();
         this.isVisible = false;
-        this.router.navigate(['/home'])
-            .then(_ => {
-                this.flashMessageService.generateFlashMessage('You have just logged out!', this.isVisible);
-            });
+        this.router.navigate(['/home']);
+        this.flashMessageService.openSnackBar('You have just logged out!');
     }
 
     storeUserData(token, user) {
@@ -85,4 +80,6 @@ export class LoginService {
             })
         });
     }
+
+    ngOnInit() {}
 }
