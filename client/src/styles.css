@@ -76,6 +76,10 @@ table {
     text-transform: uppercase;
 }
 
+.mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
 
 /* I C O N S */
 

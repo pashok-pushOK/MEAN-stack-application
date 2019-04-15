@@ -117,19 +117,6 @@ export class ProfileComponent implements OnInit {
         this.loginService.logOut();
     }
 
-    // method for toggling tabs
-    toggleTabs(event, label): void {
-        let i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName('form-tabs--item_content');
-        tablinks = document.getElementsByClassName('tab-button');
-        for(i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].classList.remove('active');
-            tablinks[i].className = tablinks[i].className.replace('active', '');
-        }
-        document.getElementById(label).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
-
     uploadPostImage(postImageInput: any): void {
         if(postImageInput.files || postImageInput.files[0]) {
             let postImageUploadView = document.getElementById('postImageUploadView');
@@ -141,10 +128,13 @@ export class ProfileComponent implements OnInit {
                 this.image = document.createElement('img');
                 this.image.src = this.selectedPostFile.src;
                 this.image.width = 200;
+                postImageUploadView.innerHTML = '';
                 postImageUploadView.appendChild(this.image);
             };
 
-            reader.readAsDataURL(postImageInput.files[0]);
+            if(postImageInput.files[0]) {
+                reader.readAsDataURL(postImageInput.files[0]);
+            }
         }
     }
 
