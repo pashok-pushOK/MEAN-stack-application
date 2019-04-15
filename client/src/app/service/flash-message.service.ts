@@ -10,9 +10,7 @@ export class FlashMessageService {
 
     openSnackBar(message) {
         this.snackBar.open(message, '', {
-            duration: this.durationInSeconds * 1000,
-            horizontalPosition: "right",
-            verticalPosition: "top"
+            duration: this.durationInSeconds * 1000
         });
     }
 

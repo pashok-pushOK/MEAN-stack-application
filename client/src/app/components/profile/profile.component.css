@@ -23,7 +23,7 @@
 .tab-button-item {
     display: block;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 400;
     width: 100%;
     max-width: 200px;
     margin-right: 5px;
@@ -32,10 +32,11 @@
     border-radius: 4px;
     background-color: white;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .tab-button-item.active {
-    background-color: #3f51b5;
+    background-color: darkslategray;
     color: white;
 }
 

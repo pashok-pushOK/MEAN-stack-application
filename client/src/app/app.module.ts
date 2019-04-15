@@ -14,7 +14,8 @@ import {
     MatChipsModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MatAutocompleteModule
 } from "@angular/material";
 
 // services
@@ -63,7 +64,8 @@ import {RegisterComponent} from './components/register/register.component';
         MatChipsModule,
         MatSelectModule,
         MatSnackBarModule,
-        MatCardModule
+        MatCardModule,
+        MatAutocompleteModule
     ],
     providers: [
         AuthService,

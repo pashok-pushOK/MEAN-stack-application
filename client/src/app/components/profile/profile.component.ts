@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {LoginService} from "../../service/login.service";
 import {ImageService} from "../../service/image.service";
 import {PostsService} from "../../service/posts.service";
@@ -23,6 +23,8 @@ class ImageSnippet {
 })
 export class ProfileComponent implements OnInit {
 
+    image: HTMLImageElement;
+
     // user data variables
     userName;
     userEmail;
@@ -42,6 +44,9 @@ export class ProfileComponent implements OnInit {
     selectedPostFile: ImageSnippet;
     blogPostForm: FormGroup;
 
+    // autocomplete filed options
+    options: string[] = ['Beauty', 'Love', 'Sport', 'Nature', 'Adventure'];
+
     constructor(
         private loginService: LoginService,
         private imageService: ImageService,
@@ -54,7 +59,6 @@ export class ProfileComponent implements OnInit {
 
         // Create blog post form group on page loads
         this.blogPostForm = this.formBuilder.group({
-            blogSelectCategory: new FormControl(''),
             blogInputCategory: new FormControl(''),
             blogInputTitle: new FormControl(''),
             blogInputText: new FormControl(''),
@@ -128,10 +132,16 @@ export class ProfileComponent implements OnInit {
 
     uploadPostImage(postImageInput: any): void {
         if(postImageInput.files || postImageInput.files[0]) {
+            let postImageUploadView = document.getElementById('postImageUploadView');
             const reader = new FileReader();
 
             reader.onload = (event: any) => {
                 this.selectedPostFile = new ImageSnippet(event.target.result, postImageInput.files[0]);
+
+                this.image = document.createElement('img');
+                this.image.src = this.selectedPostFile.src;
+                this.image.width = 200;
+                postImageUploadView.appendChild(this.image);
             };
 
             reader.readAsDataURL(postImageInput.files[0]);
@@ -141,7 +151,6 @@ export class ProfileComponent implements OnInit {
     // method for submitting user created blog post
     public submitBlogPostForm() {
         const postObject = {
-            blogSelectCategory: this.blogPostForm.get('blogSelectCategory').value,
             blogInputCategory: this.blogPostForm.get('blogInputCategory').value,
             blogInputTitle: this.blogPostForm.get('blogInputTitle').value,
             blogInputText: this.blogPostForm.get('blogInputText').value,
@@ -150,8 +159,6 @@ export class ProfileComponent implements OnInit {
             blogAuthorId: this.userId,
             blogAuthorName: this.userName
         };
-
-        console.info(postObject);
 
         this.postService.createPost(postObject)
             .subscribe(res => {
