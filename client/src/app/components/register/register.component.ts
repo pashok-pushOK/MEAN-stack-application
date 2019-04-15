@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
+
+import {AuthService} from "../../service/auth.service";
+import {FlashMessageService} from "../../service/flash-message.service";
 
 @Component({
     selector: 'app-register',
@@ -16,6 +18,14 @@ export class RegisterComponent implements OnInit {
     emailStatus: boolean;
     userNameMessage: string;
     userNameStatus: boolean;
+
+    constructor(
+        private formBuilder: FormBuilder,
+        private authService: AuthService,
+        private router: Router,
+        private flashMessageService: FlashMessageService
+    ) {
+    }
 
     validateUserName(control) {
         const regExp = new RegExp(/^[a-zA-Z0-9]+$/);
@@ -77,6 +87,7 @@ export class RegisterComponent implements OnInit {
                 if (res.success) {
                     this.form.reset();
                     this.router.navigate(['/login']);
+                    this.flashMessageService.openSnackBar('You have successfully created an account!');
                 }
             });
     }
@@ -95,13 +106,6 @@ export class RegisterComponent implements OnInit {
                 this.userNameMessage = data.message;
                 this.userNameStatus = data.success;
             });
-    }
-
-    constructor(
-        private formBuilder: FormBuilder,
-        private authService: AuthService,
-        private router: Router
-    ) {
     }
 
     ngOnInit() {

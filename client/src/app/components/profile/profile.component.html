@@ -9,17 +9,17 @@
                         <div class="row">
                             <div class="col-4 col-sm-4">
                                 <div class="profile-avatar">
-                                    <div class="w-100 h-100" *ngIf="userPhoto && !isUploaded; else second;">
-                                        <img [src]="userPhoto" [alt]="userPhoto">
-                                    </div>
-                                    <ng-template #second>
-                                        <ng-container *ngIf="!isUploaded && !userPhoto; else third">
+<!--                                    <div class="w-100 h-100" *ngIf="userPhoto !== undefined || userPhoto !== null; else second;">-->
+<!--                                        <img [src]="userPhoto" [alt]="userPhoto">-->
+<!--                                    </div>-->
+<!--                                    <ng-template #second>-->
+<!--                                        <ng-container *ngIf="userPhoto === undefined || userPhoto === null && !isUploaded; else third">-->
                                             <img src="../../../assets/images/no-photo.png" alt="no-photo">
-                                        </ng-container>
-                                    </ng-template>
-                                    <ng-template #third>
-                                        <img [src]="selectedFile.src" [alt]="selectedFile.name">
-                                    </ng-template>
+<!--                                        </ng-container>-->
+<!--                                    </ng-template>-->
+<!--                                    <ng-template #third>-->
+<!--                                        <img [src]="selectedFile.src" [alt]="selectedFile.name">-->
+<!--                                    </ng-template>-->
                                 </div>
                             </div>
 
