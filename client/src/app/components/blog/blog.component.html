@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="blogCardsArr.length > 2">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 blog-col mb-4" *ngFor="let blogCard of blogCardsArr">
                 <app-blog-card [blogCard]="blogCard"></app-blog-card>
             </div>

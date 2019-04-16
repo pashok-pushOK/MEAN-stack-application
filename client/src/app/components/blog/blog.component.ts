@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogDataService} from "../../service/blog-data.service";
-import {PostsService} from "../../service/posts.service";
 import {LoginService} from "../../service/login.service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
@@ -38,7 +37,6 @@ export class BlogComponent implements OnInit {
     constructor(
         private blogDataService: BlogDataService,
         private formBuilder: FormBuilder,
-        private postService: PostsService,
         // private loginService: LoginService
     ) {
         // Create blog post form group on page loads
@@ -73,6 +71,8 @@ export class BlogComponent implements OnInit {
 
     // method for submitting user created blog post
     public submitBlogPostForm() {
+        // window.location.reload();
+
         const postObject = {
             blogInputCategory: this.blogPostForm.get('blogInputCategory').value,
             blogInputTitle: this.blogPostForm.get('blogInputTitle').value,
@@ -83,7 +83,9 @@ export class BlogComponent implements OnInit {
             blogAuthorName: this.userName
         };
 
-        this.postService.createPost(postObject)
+        console.log(postObject);
+
+        this.blogDataService.createPost(postObject)
             .subscribe(res => {
                 console.log(res);
             })
