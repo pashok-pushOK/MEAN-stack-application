@@ -3,11 +3,12 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="display-3 mb-4">Blog</h1>
+                <button mat-raised-button color="primary" (click)="toggleForm()" class="mb-5">Create new post</button>
             </div>
         </div>
 
-        <div>
-            <div class="form-tabs mt-4">
+        <div *ngIf="formToggler" class="mb-5">
+            <div class="form-tabs">
                 <div class="form-tabs-content">
                     <div class="form-tabs--item_content active" id="Posts">
                         <form [formGroup]="blogPostForm" method="post"

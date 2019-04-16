@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogDataService} from "../../service/blog-data.service";
 import {PostsService} from "../../service/posts.service";
+import {LoginService} from "../../service/login.service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 class ImageSnippet {
@@ -20,10 +21,9 @@ export class BlogComponent implements OnInit {
 
     // user data variables
     userName;
-    userEmail;
-    userCity;
-    userAdress;
     userId;
+
+    formToggler: boolean = false;
 
     image: HTMLImageElement;
     blogCardsArr = [];
@@ -38,7 +38,8 @@ export class BlogComponent implements OnInit {
     constructor(
         private blogDataService: BlogDataService,
         private formBuilder: FormBuilder,
-        private postService: PostsService
+        private postService: PostsService,
+        // private loginService: LoginService
     ) {
         // Create blog post form group on page loads
         this.blogPostForm = this.formBuilder.group({
@@ -88,6 +89,10 @@ export class BlogComponent implements OnInit {
             })
     }
 
+    toggleForm(): void {
+        this.formToggler = !this.formToggler;
+    }
+
     // get posts with service
     getBlogData() {
         this.blogCardsArr = this.blogDataService.getBlogData();
@@ -95,6 +100,14 @@ export class BlogComponent implements OnInit {
 
     ngOnInit() {
         this.getBlogData();
+
+        // this.loginService.getUserProfile()
+        //     .subscribe(profile => {
+        //         console.log(profile)
+        //
+        //         this.userName = profile.user.userName;
+        //         this.userId = profile.user._id;
+        //     });
     }
 
 }

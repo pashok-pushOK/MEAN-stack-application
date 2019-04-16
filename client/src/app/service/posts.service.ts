@@ -14,7 +14,7 @@ export class PostsService {
         for(let key in post) {
             this.formData.append(key, post[key]);
         }
-        return this.http.post<BlogCard[]>(`http://localhost/profile/${post.blogAuthorName}/create-new-article`, this.formData);
+        return this.http.post<BlogCard[]>(`http://localhost/blog/create-new-article`, this.formData);
     }
 
     constructor(
