@@ -46,71 +46,13 @@
                             </div>
                         </div>
 
-                    </form>
-
-                    <div>
-                        <div class="form-tabs mt-4">
-                            <div class="form-tabs-content">
-                                <div class="form-tabs--item_content active" id="Posts">
-                                    <form [formGroup]="blogPostForm" method="post"
-                                          enctype="application/x-www-form-urlencoded"
-                                          (ngSubmit)="submitBlogPostForm()">
-                                        <div class="form-group">
-                                            <mat-form-field class="w-100" appearance="outline">
-                                                <mat-label>Choose the category or create new</mat-label>
-                                                <input type="text" placeholder="Pick one"
-                                                       aria-label="Number"
-                                                       matInput
-                                                       formControlName="blogInputCategory"
-                                                       [matAutocomplete]="auto">
-                                                <mat-autocomplete #auto="matAutocomplete">
-                                                    <mat-option *ngFor="let option of options" [value]="option">
-                                                        {{option}}
-                                                    </mat-option>
-                                                </mat-autocomplete>
-
-                                            </mat-form-field>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <mat-form-field class="w-100" appearance="outline">
-                                                <mat-label>Post Title</mat-label>
-                                                <input matInput type="text" placeholder="Title"
-                                                       formControlName="blogInputTitle">
-                                            </mat-form-field>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <mat-form-field class="w-100" appearance="outline">
-                                                <mat-label>Post Text</mat-label>
-                                                <textarea matInput placeholder="Textarea"
-                                                          formControlName="blogInputText"></textarea>
-                                            </mat-form-field>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input (change)="uploadPostImage(postImageInput)" #postImageInput
-                                                   type="file" placeholder="Choose an image"
-                                                   formControlName="blogInputImage" class="form-control">
-                                            <div class="mt-3" id="postImageUploadView"></div>
-                                        </div>
-
-                                        <div class="d-flex justify-content-end">
-                                            <button mat-raised-button color="warn" type="submit">Create</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="d-flex mt-4">
                             <button mat-raised-button color="warn" (click)="logOut()" class="mr-3">Log out</button>
                             <button (click)="submitForm()" [disabled]="!isUploaded" type="submit" mat-raised-button
                                     color="primary">Save
                             </button>
                         </div>
-                    </div>
-
+                    </form>
                 </div>
             </div>
         </div>
