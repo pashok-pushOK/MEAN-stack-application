@@ -12,95 +12,35 @@ export interface posts {
 })
 export class BlogDataService {
 
-    // blogData: BlogCard[] = [
-    //     {
-    //         blogId: '1er221',
-    //         blogImg: 'img1.jpg',
-    //         blogDatePublication: '03.12.2019',
-    //         blogTitle: 'Title 1. Just checking',
-    //         blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-    //         blogComments: 0,
-    //         blogAuthorId: '1lew1',
-    //         blogAuthorName: 'Name',
-    //         blogCategory: 'Sport'
-    //     },
-    //     {
-    //         blogId: '1er223',
-    //         blogImg: 'img2.jpg',
-    //         blogDatePublication: '03.12.2019',
-    //         blogTitle: 'Title 2. Just checking',
-    //         blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-    //         blogComments: 0,
-    //         blogAuthorId: '1lew1',
-    //         blogAuthorName: 'Name',
-    //         blogCategory: 'Sport'
-    //     },
-    //     {
-    //         blogId: '1er224',
-    //         blogImg: 'img3.jpg',
-    //         blogDatePublication: '03.12.2019',
-    //         blogTitle: 'Title 3. Just checking',
-    //         blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-    //         blogComments: 0,
-    //         blogAuthorId: '1lew1',
-    //         blogAuthorName: 'Name',
-    //         blogCategory: 'Sport'
-    //     },
-    //     {
-    //         blogId: '1er225',
-    //         blogImg: 'img4.jpg',
-    //         blogDatePublication: '03.12.2019',
-    //         blogTitle: 'Title 4. Just checking',
-    //         blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-    //         blogComments: 0,
-    //         blogAuthorId: '1lew1',
-    //         blogAuthorName: 'Name',
-    //         blogCategory: 'Sport'
-    //     },
-    //     {
-    //         blogId: '1er226',
-    //         blogImg: 'img5.jpg',
-    //         blogDatePublication: '03.12.2019',
-    //         blogTitle: 'Title 5. Just checking',
-    //         blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-    //         blogComments: 0,
-    //         blogAuthorId: '1lew1',
-    //         blogAuthorName: 'Name',
-    //         blogCategory: 'Sport'
-    //     }
-    // ];
+    constructor(
+        private http: HttpClient
+    ) {
+    }
 
-    blogData = [];
+    blogData: any;
+    formData = new FormData();
 
     public getBlogData() {
         this.getPostsData()
             .subscribe(res => {
-                console.log(res);
-                this.blogData.push(res.data);
+                this.blogData = res.data;
             });
 
         return this.blogData;
     }
 
     public getPost(id: string): Observable<BlogCard> {
-        return of(this.blogData.find(post => post.blogId === id));
+        return of(this.blogData.find(post => post._id === id));
     }
 
-    formData = new FormData();
-
-    public createPost(post): Observable<BlogCard[]> {
+    public createPost(post): Observable<posts> {
         for(let key in post) {
             this.formData.append(key, post[key]);
         }
-        return this.http.post<BlogCard[]>(`http://localhost/blog/create-new-article`, this.formData);
+        return this.http.post<posts>('http://localhost/blog/createNewArticle', this.formData);
     }
 
     public getPostsData(): Observable<posts> {
         return this.http.get<posts>(`http://localhost/blog/posts`);
-    }
-
-    constructor(
-        private http: HttpClient
-    ) {
     }
 }

@@ -2,13 +2,7 @@ const mongoose = require('mongoose');
 
 const blogSchema = mongoose.Schema({
     blogCategory: String,
-    blogId: {
-        unique: true,
-        type: String
-    },
-    blogImg: {
-        type: String
-    },
+    blogImg: String,
     blogTitle: {
         unique: true,
         type: String
@@ -18,9 +12,14 @@ const blogSchema = mongoose.Schema({
         type: String,
         default: new Date().toLocaleDateString()
     },
-    blogComments: Number,
-    blogAuthorId: String,
-    blogAuthorName: String
+    blogComments: {
+        type: Number,
+        default: 0
+    },
+    blogAuthorName: {
+        type: String,
+        default: 'Guest'
+    }
 });
 
 const Blog = mongoose.model('Post', blogSchema);

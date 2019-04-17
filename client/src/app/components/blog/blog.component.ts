@@ -19,13 +19,13 @@ class ImageSnippet {
 export class BlogComponent implements OnInit {
 
     // user data variables
-    userName;
-    userId;
+    userName: string;
+    // userId: string;
 
     formToggler: boolean = false;
 
     image: HTMLImageElement;
-    blogCardsArr = [];
+    blogCardsArr: any;
 
     // variables for creating a new blog post
     selectedPostFile: ImageSnippet;
@@ -36,8 +36,7 @@ export class BlogComponent implements OnInit {
 
     constructor(
         private blogDataService: BlogDataService,
-        private formBuilder: FormBuilder,
-        // private loginService: LoginService
+        private formBuilder: FormBuilder
     ) {
         // Create blog post form group on page loads
         this.blogPostForm = this.formBuilder.group({
@@ -69,9 +68,17 @@ export class BlogComponent implements OnInit {
         }
     }
 
+    getLocalStorageItem(itemName) {
+        let item = localStorage.getItem(itemName);
+        if(item !== null || item !== undefined || item !== '') {
+            return item;
+        }
+    }
+
     // method for submitting user created blog post
     public submitBlogPostForm() {
         // window.location.reload();
+        this.userName = this.getLocalStorageItem('userName');
 
         const postObject = {
             blogInputCategory: this.blogPostForm.get('blogInputCategory').value,
@@ -79,11 +86,8 @@ export class BlogComponent implements OnInit {
             blogInputText: this.blogPostForm.get('blogInputText').value,
             blogInputImage: this.selectedPostFile.file,
             blogDatePublication: new Date().toLocaleDateString(),
-            blogAuthorId: this.userId,
-            blogAuthorName: this.userName
+            // blogAuthorName: this.userName
         };
-
-        console.log(postObject);
 
         this.blogDataService.createPost(postObject)
             .subscribe(res => {
@@ -91,25 +95,21 @@ export class BlogComponent implements OnInit {
             })
     }
 
+    // show/hide form
     toggleForm(): void {
         this.formToggler = !this.formToggler;
     }
 
     // get posts with service
     getBlogData() {
-        this.blogCardsArr = this.blogDataService.getBlogData();
+        this.blogDataService.getPostsData()
+            .subscribe(res => {
+                this.blogCardsArr = res.data;
+            });
     }
 
     ngOnInit() {
         this.getBlogData();
-
-        // this.loginService.getUserProfile()
-        //     .subscribe(profile => {
-        //         console.log(profile)
-        //
-        //         this.userName = profile.user.userName;
-        //         this.userId = profile.user._id;
-        //     });
     }
 
 }

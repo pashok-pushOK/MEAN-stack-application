@@ -29,7 +29,7 @@ module.exports = (router) => {
         });
     });
 
-    router.post('/:userName', (req, res) => {
+    router.post('/:userName/getUserPhoto', (req, res) => {
         avatarSchema.findOne({userId: req.body.userId}, (error, user) => {
             if(error) {
                 res.json({success: false, message: error})

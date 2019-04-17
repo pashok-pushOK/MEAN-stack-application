@@ -33,7 +33,7 @@ export class ImageService {
             userName: name,
             userId: id
         };
-        return this.http.post<image>(`http://localhost/profile/${data.userName}`, data);
+        return this.http.post<image>(`http://localhost/profile/${data.userName}/getUserPhoto`, data);
     }
 
     updateUserPhoto(files): Observable<image> {

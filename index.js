@@ -42,7 +42,7 @@ app.use(fileUpload());
 // requests
 app.use('/authentication', authentication);
 app.use('/profile', profile);
-app.use('/blog/', blog);
+app.use('/blog', blog);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/dist/client/index.html'));
