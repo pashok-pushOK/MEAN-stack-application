@@ -17,13 +17,14 @@ export class BlogDataService {
     ) {
     }
 
-    blogData: any;
+    blogData: any = [];
     formData = new FormData();
 
     public getBlogData() {
         this.getPostsData()
             .subscribe(res => {
                 this.blogData = res.data;
+                console.log(this.blogData);
             });
 
         return this.blogData;
