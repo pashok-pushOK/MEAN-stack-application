@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = (router) => {
 
-    router.post('/:userName/create-new-article', (req, res) => {
+    router.post('/createNewArticle', (req, res) => {
         if (!req.body.blogInputCategory) {
             res.json({success: false, message: 'Enter a valid category name!'})
         } else if (!req.body.blogInputTitle) {
@@ -13,30 +13,26 @@ module.exports = (router) => {
         } else if (!req.files.blogInputImage) {
             res.json({success: false, message: 'Post without image is not a post!'})
         } else {
+            const image = req.files.blogInputImage;
             const postObject = {
                 blogCategory: req.body.blogInputCategory,
-                blogId: req.body.blogInputTitle.toLowerCase(),
-                blogImg: req.files.blogInputImage.name,
+                blogImg: image.name,
                 blogTitle: req.body.blogInputTitle,
                 blogDesc: req.body.blogInputText,
-                blogAuthorId: req.body.userId,
-                blogAuthorName: req.body.userName
+                // blogAuthorName: req.body.userName
             };
 
-            res.json({success: true, message: postObject});
             postSchema.create(postObject, (error, post) => {
                 if (error) {
                     res.json({success: false, message: error})
                 } else {
-                    req.files.blogInputImage.mv(path.resolve(__dirname, '../client/src/assets/uploads/posts', req.files.blogInputImage.name), (error) => {
+                    image.mv(path.resolve(__dirname, '../client/src/assets/uploads/posts', image.name), (error) => {
                         if (error) {
                             res.json({success: false, message: `Error: ${error}`})
                         } else {
-                            res.json({success: true, message: 'Success!'})
+                            res.json({success: true, message: 'Post created!'});
                         }
                     });
-
-                    res.json({success: true, message: 'Post created!'});
                 }
             });
         }

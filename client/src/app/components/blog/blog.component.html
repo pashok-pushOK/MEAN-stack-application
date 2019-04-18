@@ -11,14 +11,11 @@
             <div class="form-tabs">
                 <div class="form-tabs-content">
                     <div class="form-tabs--item_content active" id="Posts">
-                        <form [formGroup]="blogPostForm" method="post"
-                              enctype="application/x-www-form-urlencoded"
-                              (ngSubmit)="submitBlogPostForm()">
+                        <form [formGroup]="blogPostForm" enctype="application/x-www-form-urlencoded" (ngSubmit)="submitBlogPostForm()">
                             <div class="form-group">
                                 <mat-form-field class="w-100" appearance="outline">
                                     <mat-label>Choose the category or create new</mat-label>
                                     <input type="text" placeholder="Pick one"
-                                           aria-label="Number"
                                            matInput
                                            formControlName="blogInputCategory"
                                            [matAutocomplete]="auto">
@@ -63,7 +60,7 @@
             </div>
         </div>
 
-        <div class="row" *ngIf="blogCardsArr.length > 2">
+        <div class="row" *ngIf="blogCardsArr">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 blog-col mb-4" *ngFor="let blogCard of blogCardsArr">
                 <app-blog-card [blogCard]="blogCard"></app-blog-card>
             </div>

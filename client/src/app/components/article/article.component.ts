@@ -23,6 +23,7 @@ export class ArticleComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('id');
         this.blogDataService.getPost(id)
             .subscribe(post => {
+                console.log(id, post);
                 this.post = post;
 
                 // i don't know why page scroll to bottom when browser goes to /blog/post/:id
