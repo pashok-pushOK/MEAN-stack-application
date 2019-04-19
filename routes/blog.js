@@ -40,10 +40,35 @@ module.exports = (router) => {
 
     router.get('/posts', (req, res) => {
         postSchema.find({}, (error, posts) => {
-            if(error)
+            if (error)
                 res.json({success: false, message: error});
             else
                 res.json({success: true, data: posts});
+        });
+    });
+
+    router.get('/post/:id', (req, res) => {
+        // res.json({data: req.params.id});
+        postSchema.findById(req.params.id, (err, post) => {
+            if (err)
+                res.json({success: false, message: err});
+            if (!post)
+                res.json({success: false, message: 'Post not found by id'});
+            else
+                res.json({
+                    success: true,
+
+                    data: {
+                        postId: post._id,
+                        postCategory: post.blogCategory,
+                        postImg: post.blogImg,
+                        postTitle: post.blogTitle,
+                        postDesc: post.blogDesc,
+                        postDatePublication: post.blogDatePublication,
+                        postComments: post.blogComments,
+                        postAuthorName: post.blogAuthorName
+                    }
+                });
         });
     });
 

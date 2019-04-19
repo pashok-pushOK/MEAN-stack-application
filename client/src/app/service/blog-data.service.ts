@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {BlogCard} from "../blog-card";
 import {HttpClient} from "@angular/common/http";
-import {catchError, map, tap} from 'rxjs/operators';
 
 export interface posts {
-    data: object;
+    data: {
+        _id: string;
+    }
 }
 
 @Injectable({
@@ -13,10 +14,7 @@ export interface posts {
 })
 export class BlogDataService {
 
-    blogData: any = this.getPostsData()
-        .subscribe(res => {
-        this.blogData = res.data;
-    });
+    blogData: object;
     formData = new FormData();
 
     constructor(
@@ -24,8 +22,13 @@ export class BlogDataService {
     ) {
     }
 
-    public getPost(id: string): Observable<BlogCard> {
-        return of(this.blogData.find(post => post._id === id));
+    public getPost(id: string) {
+        return this.http.get<posts>(`http://localhost/blog/post/${id}`)
+            // .subscribe(res => {
+            //     console.log(res.data);
+            //     this.blogData = res.data;
+            //
+            // })
     }
 
     public getPostsData() {
