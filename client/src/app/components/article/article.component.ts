@@ -21,7 +21,6 @@ export class ArticleComponent implements OnInit {
 
     getPost(): void {
         const id = this.route.snapshot.paramMap.get('id');
-        console.log(id);
         this.blogDataService.getPost(id)
             .subscribe(post => {
                 console.log(id, post);
@@ -34,6 +33,7 @@ export class ArticleComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.blogDataService.getPostsData();
         this.getPost();
     }
 }
