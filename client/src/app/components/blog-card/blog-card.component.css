@@ -46,3 +46,18 @@
 .utility-list li.date {
     background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1765/icon-calendar.svg) no-repeat 0 0.1em;
 }
+
+.mat-card {
+    height: 100%;
+}
+
+.mat-card,
+.mat-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-card-content,
+.mat-card-content p {
+    flex-grow: 1;
+}

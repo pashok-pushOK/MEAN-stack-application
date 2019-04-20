@@ -19,12 +19,14 @@ module.exports = (router) => {
                 blogImg: image.name,
                 blogTitle: req.body.blogInputTitle,
                 blogDesc: req.body.blogInputText,
-                // blogAuthorName: req.body.userName
+                blogAuthorName: req.body.userName,
+                blogComments: 0,
+                blogDatePublication: req.body.blogDatePublication
             };
 
             postSchema.create(postObject, (error, post) => {
                 if (error) {
-                    res.json({success: false, message: error})
+                    res.json({success: false, message: `Error -> ${error}`})
                 } else {
                     image.mv(path.resolve(__dirname, '../client/src/assets/uploads/posts', image.name), (error) => {
                         if (error) {

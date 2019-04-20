@@ -7,5 +7,8 @@ export class BlogCard {
     blogDatePublication: string;
     blogComments: number;
     // blogAuthorId: string;
-    blogAuthorName: string;
+    blogAuthorName: {
+        type: string,
+        default: 'Guest'
+    }
 }
