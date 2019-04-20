@@ -68,7 +68,7 @@ export class BlogComponent implements OnInit {
         }
     }
 
-    getLocalStorageItem(itemName) {
+    getLocalStorageItem(itemName): string {
         let item = localStorage.getItem(itemName);
         if(item !== null || item !== undefined || item !== '') {
             return item;

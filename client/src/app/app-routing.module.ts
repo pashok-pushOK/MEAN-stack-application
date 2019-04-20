@@ -15,6 +15,9 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {NotAuthGuard} from "./guards/notAuth.guard";
 
+// resolver
+import {PostResolver} from "./components/article/article.component";
+
 const appRoutes: Routes = [
     {
         path: '',
@@ -31,7 +34,10 @@ const appRoutes: Routes = [
     },
     {
         path: 'blog/post/:id',
-        component: ArticleComponent
+        component: ArticleComponent,
+        resolve: {
+            post: PostResolver
+        }
     },
     {
         path: 'about',
@@ -59,7 +65,8 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [PostResolver]
 })
 
 export class AppRoutingModule {

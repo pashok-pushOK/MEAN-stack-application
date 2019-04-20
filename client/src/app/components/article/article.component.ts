@@ -1,38 +1,41 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Location} from "@angular/common";
+import {Component, OnInit, Injectable} from '@angular/core';
+import {ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot, Resolve} from "@angular/router";
+import {Observable} from "rxjs";
 import {BlogDataService} from "../../service/blog-data.service";
-import {BlogCard} from "../../blog-card";
 
+@Injectable()
+export class PostResolver implements Resolve<any> {
+    constructor(
+        private backend: BlogDataService
+    ) {}
+
+    resolve(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<any>|Promise<any>|any {
+        return this.backend.getPost(route.params.id);
+    }
+}
 @Component({
     selector: 'app-article',
     templateUrl: './article.component.html',
     styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
-    post: BlogCard;
+
+    post: any;
+    isLoadedData: boolean = false;
 
     constructor(
-        private route: ActivatedRoute,
-        private location: Location,
-        private blogDataService: BlogDataService
-    ) {
-    }
-
-    getPost(): void {
-        const id = this.route.snapshot.paramMap.get('id');
-        this.blogDataService.getPost(id)
-            .subscribe(post => {
-                console.log(id, post);
-                this.post = post;
-
-                // i don't know why page scroll to bottom when browser goes to /blog/post/:id
-                // so I decided to use next line, but I don't like this
-                window.scrollTo(0, 0);
-            });
-    }
+        private route: ActivatedRoute
+    ) {}
 
     ngOnInit() {
-        this.getPost();
+        // get data from resolver
+        this.post = this.route.snapshot.data.post.data;
+        this.isLoadedData = this.route.snapshot.data.post.success;
+
+        // when routes to blog/post/:id -> window scrolls to bottom, I don't know why
+        window.scrollTo(0, 0);
     }
 }
