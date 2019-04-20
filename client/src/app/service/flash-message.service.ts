@@ -10,7 +10,8 @@ export class FlashMessageService {
 
     openSnackBar(message) {
         this.snackBar.open(message, '', {
-            duration: this.durationInSeconds * 1000
+            duration: this.durationInSeconds * 1000,
+            panelClass: 'text-center text-white'
         });
     }
 

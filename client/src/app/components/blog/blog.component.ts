@@ -89,10 +89,9 @@ export class BlogComponent implements OnInit {
             // blogAuthorName: this.userName
         };
 
-        this.blogDataService.createPost(postObject)
-            .subscribe(res => {
-                console.log(res);
-            })
+        this.blogDataService.createPost(postObject);
+
+        window.location.reload();
     }
 
     // show/hide form

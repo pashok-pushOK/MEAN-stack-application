@@ -4,6 +4,7 @@ import {BlogCard} from "../blog-card";
 import {HttpClient} from "@angular/common/http";
 
 export interface posts {
+    success: boolean;
     data: {
         _id: string;
     }

@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
+import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
+
+import {SearchService} from "../../service/search.service";
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -7,7 +11,23 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-    constructor() {}
+    searchForm: FormGroup;
+
+    constructor(
+        private formBuilder: FormBuilder,
+        private searchService: SearchService
+    ) {
+        this.searchForm = this.formBuilder.group({
+            searchField: new FormControl('')
+        });
+    }
+
+    onSubmit(): void {
+        this.searchService.searchPost(this.searchForm.value)
+            .subscribe(res => {
+                console.log(res);
+            });
+    }
 
     ngOnInit() {}
 

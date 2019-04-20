@@ -12,6 +12,7 @@ const fileUpload = require('express-fileupload');
 const authentication = require('./routes/authentication')(router);
 const profile = require('./routes/profile')(router);
 const blog = require('./routes/blog')(router);
+const search = require('./routes/search')(router);
 
 // cors
 const cors = require('cors');
@@ -43,6 +44,7 @@ app.use(fileUpload());
 app.use('/authentication', authentication);
 app.use('/profile', profile);
 app.use('/blog', blog);
+app.use('/search', search);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/dist/client/index.html'));
