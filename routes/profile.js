@@ -12,14 +12,14 @@ module.exports = (router) => {
         const image = req.files.image;
 
         image.mv(path.resolve(__dirname, '../client/src/assets/uploads/avatars', image.name), (error) => {
-            if(error) {
+            if (error) {
                 res.json({success: false, message: `Error: ${error}`});
             } else {
                 avatarSchema.create({
                     avatar: image.name,
                     userId: req.body.userId
                 }, (err, avatar) => {
-                    if(err) {
+                    if (err) {
                         res.json({success: false, message: err})
                     } else {
                         res.json({success: true, message: 'Image has been uploaded!'});
@@ -29,16 +29,20 @@ module.exports = (router) => {
         });
     });
 
-    router.post('/:userName/getUserPhoto', (req, res) => {
-        avatarSchema.findOne({userId: req.body.userId}, (error, user) => {
-            if(error) {
-                res.json({success: false, message: error})
-            } else {
-                if(!user) {
-                    res.json({success: false, message: 'User not found by id'})
-                } else {
-                    res.json({success: true, userId: user.userId, userPhoto: user.avatar})
-                }
+    router.get('/:userName/:id', (req, res) => {
+        avatarSchema.findOne({userId: req.params.id}, (error, user) => {
+            if (error)
+                res.json({success: false, message: `Error: ${error}`});
+            if (!user)
+                res.json({success: false, message: 'User not found!'});
+            else {
+                res.json({
+                    success: true,
+                    message: 'Success',
+                    data: {
+                        userPhoto: user.avatar
+                    }
+                });
             }
         });
     });
@@ -52,11 +56,11 @@ module.exports = (router) => {
         const image = req.files.image;
 
         avatarSchema.updateOne({userId: req.body.userId}, {$set: {avatar: image.name}}, (err, changes) => {
-            if(err) {
+            if (err) {
                 res.json({success: false, message: err})
             } else {
                 image.mv(path.resolve(__dirname, '../client/src/assets/uploads/avatars', image.name), (error) => {
-                    if(error) {
+                    if (error) {
                         res.json({success: false, message: `Error: ${error}`})
                     } else {
                         res.json({success: true, message: 'Success!'})
