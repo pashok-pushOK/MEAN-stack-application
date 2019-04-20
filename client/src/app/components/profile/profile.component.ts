@@ -23,17 +23,15 @@ class ImageSnippet {
 export class ProfileComponent implements OnInit {
 
     // user data variables
-    userName;
-    userEmail;
-    userCity;
-    userAdress;
-    userId;
+    userName: string;
+    userEmail: string;
+    userCity: string;
+    userAdress: string;
+    userId: string;
     userPhoto: string;
 
     // variables for image uploading
     isUploaded: boolean = false;
-    pending: boolean = false;
-    status: string = 'init';
     selectedFile: ImageSnippet;
     form: FormGroup;
 
@@ -51,7 +49,6 @@ export class ProfileComponent implements OnInit {
     private defaultPhoto(): void {
         this.selectedFile.src = '';
         this.isUploaded = false;
-        this.pending = false;
     }
 
     // method for uploading a new image
@@ -61,15 +58,14 @@ export class ProfileComponent implements OnInit {
 
             reader.onload = (event: any) => {
                 this.selectedFile = new ImageSnippet(event.target.result, imageInput.files[0]);
-                this.pending = false;
                 this.isUploaded = true;
             };
 
-            reader.readAsDataURL(imageInput.files[0]);
+            if(imageInput.files[0]) {
+                reader.readAsDataURL(imageInput.files[0]);
+            }
         } else {
             this.isUploaded = false;
-            this.pending = false;
-            this.status = 'exit';
         }
     }
 
@@ -109,9 +105,12 @@ export class ProfileComponent implements OnInit {
 
                 this.imageService.getUserPhoto(this.userName, this.userId)
                     .subscribe(data => {
-                        this.userPhoto = `assets/uploads/avatars/${data.userPhoto}`;
+                        this.userPhoto = data.userPhoto;
                     });
             });
+
+        console.log(this.userPhoto);
+        console.log(this.userId);
     }
 
 }
