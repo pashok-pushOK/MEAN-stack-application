@@ -1,63 +1,40 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {BlogCard} from "../blog-card";
+import {HttpClient} from "@angular/common/http";
+
+export interface posts {
+    success: boolean;
+    data: {
+        _id: string;
+    }
+}
 
 @Injectable({
     providedIn: 'root'
 })
 export class BlogDataService {
 
-    blogData: BlogCard[] = [
-        {
-            blogId: '1er221',
-            blogImg: 'img1.jpg',
-            blogDatePublication: '03.12.2019',
-            blogTitle: 'Title 1. Just checking',
-            blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
-        },
-        {
-            blogId: '1er223',
-            blogImg: 'img2.jpg',
-            blogDatePublication: '03.12.2019',
-            blogTitle: 'Title 2. Just checking',
-            blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
-        },
-        {
-            blogId: '1er224',
-            blogImg: 'img3.jpg',
-            blogDatePublication: '03.12.2019',
-            blogTitle: 'Title 3. Just checking',
-            blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
-        },
-        {
-            blogId: '1er225',
-            blogImg: 'img4.jpg',
-            blogDatePublication: '03.12.2019',
-            blogTitle: 'Title 4. Just checking',
-            blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
-        },
-        {
-            blogId: '1er226',
-            blogImg: 'img5.jpg',
-            blogDatePublication: '03.12.2019',
-            blogTitle: 'Title 5. Just checking',
-            blogDesc: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ',
-            blogComments: 0
+    blogData: object;
+    formData = new FormData();
+
+    constructor(
+        private http: HttpClient
+    ) {
+    }
+
+    public getPost(id: string) {
+        return this.http.get<posts>(`http://localhost/blog/post/${id}`)
+    }
+
+    public getPostsData() {
+        return this.http.get<posts>(`http://localhost/blog/posts`)
+    }
+
+    public createPost(post): Observable<BlogCard> {
+        for (let key in post) {
+            this.formData.append(key, post[key]);
         }
-    ];
-
-    getBlogData() {
-        return this.blogData;
-    }
-
-    getPost(id: string): Observable<BlogCard> {
-        return of(this.blogData.find(post => post.blogId === id));
-    }
-
-    constructor() {
+        return this.http.post<BlogCard>('http://localhost/blog/createNewArticle', this.formData);
     }
 }

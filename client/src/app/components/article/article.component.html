@@ -1,14 +1,18 @@
 <div class="article">
     <div class="container-fluid">
         <div class="article-image--wrapper">
-            <img src="../../../assets/images/{{post.blogImg}}" alt="">
+            <img [src]="'../../../assets/uploads/posts/' + post.postImg" alt="">
         </div>
     </div>
 
     <div class="container">
-        <div class="text-center">
-            <h1 class="article--title mb-5">{{post.blogTitle}}</h1>
-            <p class="text-secondary w-50 m-auto">{{post.blogDesc}}</p>
+        <div class="text-left">
+            <h1 class="article--title mb-5">Title: {{post.postTitle}}</h1>
+            <p class="text-secondary mb-3">{{post.postDesc}}</p>
+            <p class="text-secondary mb-3">Category: {{post.postCategory}}</p>
+            <p class="text-secondary mb-3">Published at: {{post.postDatePublication}}</p>
+            <p class="text-secondary mb-3">Comments: {{post.postComments}}</p>
+            <p class="text-secondary mb-3">Author: {{post.postAuthorName}}</p>
         </div>
     </div>
 </div>

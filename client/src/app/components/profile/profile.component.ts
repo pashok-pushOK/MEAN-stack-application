@@ -22,6 +22,7 @@ class ImageSnippet {
 })
 export class ProfileComponent implements OnInit {
 
+    // user data variables
     userName;
     userEmail;
     userCity;
@@ -29,6 +30,7 @@ export class ProfileComponent implements OnInit {
     userId;
     userPhoto: string;
 
+    // variables for image uploading
     isUploaded: boolean = false;
     pending: boolean = false;
     status: string = 'init';
@@ -45,12 +47,14 @@ export class ProfileComponent implements OnInit {
         });
     }
 
+    // method for resetting photo if user clicks button -> reset
     private defaultPhoto(): void {
         this.selectedFile.src = '';
         this.isUploaded = false;
         this.pending = false;
     }
 
+    // method for uploading a new image
     processFile(imageInput: any) {
         if(imageInput.files[0] || imageInput.files) {
             let reader = new FileReader();
@@ -69,6 +73,7 @@ export class ProfileComponent implements OnInit {
         }
     }
 
+    // method for submitting user photo form
     submitForm() {
         const obj = {
             image: this.selectedFile.file,
@@ -89,6 +94,10 @@ export class ProfileComponent implements OnInit {
         }
     }
 
+    logOut() {
+        this.loginService.logOut();
+    }
+
     ngOnInit() {
         this.loginService.getUserProfile()
             .subscribe(profile => {
@@ -103,10 +112,6 @@ export class ProfileComponent implements OnInit {
                         this.userPhoto = `assets/uploads/avatars/${data.userPhoto}`;
                     });
             });
-    }
-
-    logOut() {
-        this.loginService.logOut();
     }
 
 }

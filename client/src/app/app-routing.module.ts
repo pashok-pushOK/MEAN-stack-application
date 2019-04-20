@@ -11,39 +11,62 @@ import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 
+// guards
+import {AuthGuard} from "./guards/auth.guard";
+import {NotAuthGuard} from "./guards/notAuth.guard";
+
+// resolver
+import {PostResolver} from "./components/article/article.component";
+
 const appRoutes: Routes = [
     {
-        path: '', redirectTo: '/home', pathMatch: 'full'
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
     },
     {
-        path: 'home', component: HomeComponent
+        path: 'home',
+        component: HomeComponent
     },
     {
-        path: 'blog', component: BlogComponent
+        path: 'blog',
+        component: BlogComponent
     },
     {
-        path: 'blog/post/:id', component: ArticleComponent
+        path: 'blog/post/:id',
+        component: ArticleComponent,
+        resolve: {
+            post: PostResolver
+        }
     },
     {
-        path: 'about', component: AboutComponent
+        path: 'about',
+        component: AboutComponent
     },
     {
-        path: 'profile/:userName', component: ProfileComponent
+        path: 'profile/:userName',
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
     },
     {
-        path: 'login', component: LoginComponent
+        path: 'login',
+        component: LoginComponent
     },
     {
-        path: 'register', component: RegisterComponent
+        path: 'register',
+        component: RegisterComponent,
+        // canActivate: [NotAuthGuard]
     },
     {
-        path: '**', component: ErrorComponent
+        path: '**',
+        component: ErrorComponent
     }
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [PostResolver]
 })
 
 export class AppRoutingModule {

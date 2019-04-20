@@ -55,6 +55,36 @@ input, textarea {
     outline: none;
 }
 
+
+/* styles */
+
+
+table {
+    width: 100%;
+}
+
+.mat-tab-label,
+.mat-tab-link,
+.mat-tab-group {
+    font-family: "Hind Madurai", sans-serif;
+}
+
+.mat-tab-link,
+.mat-tab-label {
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+.user-form {
+    padding: 120px 0 60px;
+}
+
+
 /* I C O N S */
 
 @font-face {
