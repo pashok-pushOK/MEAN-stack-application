@@ -29,12 +29,12 @@ module.exports = (router) => {
         });
     });
 
-    router.get('/:userName/:id', (req, res) => {
+    router.post('/:userName/:id', (req, res) => {
         avatarSchema.findOne({userId: req.params.id}, (error, user) => {
             if (error)
                 res.json({success: false, message: `Error: ${error}`});
             if (!user)
-                res.json({success: false, message: 'User not found!'});
+                res.json({success: false, message: 'User not found! here'});
             else {
                 res.json({
                     success: true,

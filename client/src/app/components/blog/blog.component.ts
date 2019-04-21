@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BlogDataService} from "../../service/blog-data.service";
 import {LoginService} from "../../service/login.service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FlashMessageService} from "../../service/flash-message.service";
 
 class ImageSnippet {
     constructor(
@@ -35,6 +36,7 @@ export class BlogComponent implements OnInit {
     options: string[] = ['Beauty', 'Love', 'Sport', 'Nature', 'Adventure'];
 
     constructor(
+        private flashMessageService: FlashMessageService,
         private blogDataService: BlogDataService,
         private formBuilder: FormBuilder
     ) {
@@ -89,9 +91,14 @@ export class BlogComponent implements OnInit {
             // blogAuthorName: this.userName
         };
 
-        this.blogDataService.createPost(postObject);
-
-        window.location.reload();
+        this.blogDataService.createPost(postObject).subscribe(res => {
+            if(res) {
+                this.flashMessageService.openSnackBar('Post successfully created!');
+                setTimeout(_ => {
+                    window.location.reload();
+                }, 3000);
+            }
+        });
     }
 
     // show/hide form

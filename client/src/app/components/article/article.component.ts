@@ -13,7 +13,7 @@ export class PostResolver implements Resolve<any> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<any>|Promise<any>|any {
-        return this.backend.getPost(route.params.id);
+        return this.backend.getPost(route.params.id)
     }
 }
 @Component({

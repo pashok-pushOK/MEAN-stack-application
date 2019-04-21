@@ -29,7 +29,7 @@ export class ImageService {
     }
 
     getUserPhoto(name, id): Observable<image> {
-        return this.http.get<image>(`http://localhost/profile/${name}/${id}`);
+        return this.http.post<image>(`http://localhost/profile/${name}/${id}`, name);
     }
 
     updateUserPhoto(files): Observable<image> {
